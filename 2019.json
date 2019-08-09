@@ -1,0 +1,23 @@
+[
+    {
+        "path": "2019/Phoenix.json",
+        "name": "CTRE-Phoenix",
+        "uuid": "ab676553-b602-441f-a38d-f1296eff6537",
+        "description": "CTR-Electronics Phoenix framework",
+        "website": "https://phoenix-documentation.readthedocs.io/en/latest/index.html"
+    },
+    {
+        "path": "2019/navx_frc.json",
+        "name": "KauaiLabs_navX_FRC",
+        "uuid": "cb311d09-36e9-4143-a032-55bb2b94443b",
+        "description": "Kauai Labs navX-MXP navigation sensor",
+        "website": "https://pdocs.kauailabs.com/navx-mxp/software/roborio-libraries/"
+    },
+    {
+        "path": "2019/REVRobotics.json",
+        "name": "REVRobotics",
+        "uuid": "3f48eb8c-50fe-43a6-9cb7-44c86353c4cb",
+        "description": "REV Robotics SPARK MAX API",
+        "website": "http://www.revrobotics.com/sparkmax-software/"
+    }
+]
