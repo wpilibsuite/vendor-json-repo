@@ -32,4 +32,4 @@ jobs:
     # Runs check
     - name: Run check
       run: |
-        ./check.py 2019/*.json
+        ./check.py **/*.json
