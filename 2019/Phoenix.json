@@ -4,9 +4,9 @@
     "version": "5.14.1",
     "uuid": "ab676553-b602-441f-a38d-f1296eff6537",
     "mavenUrls": [
-        "http://devsite.ctr-electronics.com/maven/release/"
+        "https://devsite.ctr-electronics.com/maven/release/"
     ],
-    "jsonUrl": "http://devsite.ctr-electronics.com/maven/release/com/ctre/phoenix/Phoenix-latest.json",
+    "jsonUrl": "https://devsite.ctr-electronics.com/maven/release/com/ctre/phoenix/Phoenix-latest.json",
     "javaDependencies": [
         {
             "groupId": "com.ctre.phoenix",

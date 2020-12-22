@@ -4,9 +4,9 @@
     "version": "1.1.5",
     "uuid": "3f48eb8c-50fe-43a6-9cb7-44c86353c4cb",
     "mavenUrls": [
-        "http://www.revrobotics.com/content/sw/max/sdk/maven/"
+        "https://www.revrobotics.com/content/sw/max/sdk/maven/"
     ],
-    "jsonUrl": "http://www.revrobotics.com/content/sw/max/sdk/REVRobotics.json",
+    "jsonUrl": "https://www.revrobotics.com/content/sw/max/sdk/REVRobotics.json",
     "javaDependencies": [
         {
             "groupId": "com.revrobotics.frc",
