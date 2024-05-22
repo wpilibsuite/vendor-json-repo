@@ -97,13 +97,13 @@ class FileConfig:
     def getboolean(self, option):
         try:
             for section in reversed(message_context):
-                rv = self.parser.getboolean(section, option, fallback=None)
+                rv = self.parser.getboolean(section, option, fallback=True)
                 if rv is not None:
                     return rv
-            return self.parser.getboolean('global', option, fallback=False)
+            return self.parser.getboolean('global', option, fallback=True)
         except ValueError as e:
             print('{0}: could not coerce {1} to boolean: {2}'.format(basefn + '.ini', option, e), file=sys.stderr)
-            return False
+            return True
 
 file_config = FileConfig()
 
@@ -119,12 +119,13 @@ class Optional:
         self.inner = inner
 
 json_schema = {
+        'fileName': '',
         'name': '',
         'version': '',
+        'frcYear': 0,
         'uuid': '',
         'mavenUrls': [''],
         'jsonUrl': '',
-        'fileName': '',
         'javaDependencies': [{
             'groupId': '',
             'artifactId': '',
