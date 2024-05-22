@@ -1,37 +1,82 @@
 [
   {
     "path": "2024/frcjson-24.1.0.json",
-    "name": "CTRE-Phoenix-6",
+    "name": "CTRE-Phoenix (v6)",
+    "version": "24.1.0",
     "uuid": "e995de00-2c64-4df5-8831-c1441420ff19",
     "description": "CTR-Electronics Phoenix 6 framework",
     "website": "https://v6.docs.ctr-electronics.com/en/latest/index.html"
   },
   {
     "path": "2024/frcjson-24.2.0.json",
-    "name": "CTRE-Phoenix-6",
+    "name": "CTRE-Phoenix (v6)",
+    "version": "24.2.0",
     "uuid": "e995de00-2c64-4df5-8831-c1441420ff19",
     "description": "CTR-Electronics Phoenix 6 framework",
     "website": "https://v6.docs.ctr-electronics.com/en/latest/index.html"
   },
   {
       "path": "2024/frcjson-24.3.0.json",
-      "name": "CTRE-Phoenix-6",
+      "name": "CTRE-Phoenix (v6)",
+      "version": "24.3.0",
       "uuid": "e995de00-2c64-4df5-8831-c1441420ff19",
       "description": "CTR-Electronics Phoenix 6 framework",
       "website": "https://v6.docs.ctr-electronics.com/en/latest/index.html"
   },
   {
     "path": "2024/frcjson-5.33.0.json",
-    "name": "CTRE-Phoenix-5",
+    "name": "CTRE-Phoenix (v5)",
+    "version": "5.33.0",
     "uuid": "ab676553-b602-441f-a38d-f1296eff6537",
     "description": "CTR-Electronics Phoenix 5 framework",
     "website": "https://v5.docs.ctr-electronics.com/en/latest/index.html"
   },
   {
     "path": "2024/frcjson-5.33.1.json",
-    "name": "CTRE-Phoenix-5",
+    "name": "CTRE-Phoenix (v5)",
+    "version": "5.33.1",
     "uuid": "ab676553-b602-441f-a38d-f1296eff6537",
     "description": "CTR-Electronics Phoenix 5 framework",
     "website": "https://v5.docs.ctr-electronics.com/en/latest/index.html"
+  },
+  {
+    "path": "2024/REVLib-2024.2.0.json",
+    "name": "REVLib",
+    "version": "2024.2.0",
+    "uuid": "3f48eb8c-50fe-43a6-9cb7-44c86353c4cb",
+    "description": "REV Robotics REVLib C++/Java",
+    "website": "https://docs.revrobotics.com/brushless/spark-max/revlib"
+  },
+  {
+    "path": "2024/REVLib-2024.2.1.json",
+    "name": "REVLib",
+    "version": "2024.2.1",
+    "uuid": "3f48eb8c-50fe-43a6-9cb7-44c86353c4cb",
+    "description": "REV Robotics REVLib C++/Java",
+    "website": "https://docs.revrobotics.com/brushless/spark-max/revlib"
+  },
+  {
+    "path": "2024/REVLib-2024.2.2.json",
+    "name": "REVLib",
+    "version": "2024.2.2",
+    "uuid": "3f48eb8c-50fe-43a6-9cb7-44c86353c4cb",
+    "description": "REV Robotics REVLib C++/Java",
+    "website": "https://docs.revrobotics.com/brushless/spark-max/revlib"
+  },
+  {
+    "path": "2024/REVLib-2024.2.3.json",
+    "name": "REVLib",
+    "version": "2024.2.3",
+    "uuid": "3f48eb8c-50fe-43a6-9cb7-44c86353c4cb",
+    "description": "REV Robotics REVLib C++/Java",
+    "website": "https://docs.revrobotics.com/brushless/spark-max/revlib"
+  },
+  {
+    "path": "2024/REVLib-2024.2.4.json",
+    "name": "REVLib",
+    "version": "2024.2.4",
+    "uuid": "3f48eb8c-50fe-43a6-9cb7-44c86353c4cb",
+    "description": "REV Robotics REVLib C++/Java",
+    "website": "https://docs.revrobotics.com/brushless/spark-max/revlib"
   }
 ]
