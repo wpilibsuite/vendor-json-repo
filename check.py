@@ -122,7 +122,7 @@ json_schema = {
         'fileName': '',
         'name': '',
         'version': '',
-        'frcYear': 0,
+        'frcYear': '',
         'uuid': '',
         'mavenUrls': [''],
         'jsonUrl': '',
