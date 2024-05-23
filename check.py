@@ -513,7 +513,10 @@ def check_jni_artifacts(dep, fetcher):
     for platform in dep.get('validPlatforms', []):
         fn, binary = fetcher.fetch(platform)
         if binary is None:
-            error('could not fetch required JNI binary platform {0}'.format(platform))
+            if platform == 'windowsx86':
+                warn('WPILib no longer builds for 32-bit')
+            else:
+                error('could not fetch required JNI binary platform {0}'.format(platform))
         else:
             try:
                 with ZipFile(io.BytesIO(binary)) as zf:
