@@ -496,6 +496,8 @@ def check_cpp_artifacts(dep, fetcher):
             if binary is None:
                 if failok:
                     info('could not fetch optional binary platform {0} build {1}'.format(platform, build))
+                if platform == 'windowsx86':
+                    warn('WPILib no longer builds for 32-bit')
                 else:
                     error('could not fetch required C++ binary platform {0} build {1}'.format(platform, build))
             else:
