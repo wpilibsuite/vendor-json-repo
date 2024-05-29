@@ -1,6 +1,6 @@
 [
   {
-    "path": "2024/frcjson-24.1.0.json",
+    "path": "2024/Phoenix6-24.1.0.json",
     "name": "CTRE-Phoenix (v6)",
     "version": "24.1.0",
     "uuid": "e995de00-2c64-4df5-8831-c1441420ff19",
@@ -8,7 +8,7 @@
     "website": "https://v6.docs.ctr-electronics.com/en/latest/index.html"
   },
   {
-    "path": "2024/frcjson-24.2.0.json",
+    "path": "2024/Phoenix6-24.2.0.json",
     "name": "CTRE-Phoenix (v6)",
     "version": "24.2.0",
     "uuid": "e995de00-2c64-4df5-8831-c1441420ff19",
@@ -16,7 +16,7 @@
     "website": "https://v6.docs.ctr-electronics.com/en/latest/index.html"
   },
   {
-      "path": "2024/frcjson-24.3.0.json",
+      "path": "2024/Phoenix6-24.3.0.json",
       "name": "CTRE-Phoenix (v6)",
       "version": "24.3.0",
       "uuid": "e995de00-2c64-4df5-8831-c1441420ff19",
@@ -24,7 +24,7 @@
       "website": "https://v6.docs.ctr-electronics.com/en/latest/index.html"
   },
   {
-    "path": "2024/frcjson-5.33.0.json",
+    "path": "2024/Phoenix5-5.33.0.json",
     "name": "CTRE-Phoenix (v5)",
     "version": "5.33.0",
     "uuid": "ab676553-b602-441f-a38d-f1296eff6537",
@@ -32,7 +32,7 @@
     "website": "https://v5.docs.ctr-electronics.com/en/latest/index.html"
   },
   {
-    "path": "2024/frcjson-5.33.1.json",
+    "path": "2024/Phoenix5-5.33.1.json",
     "name": "CTRE-Phoenix (v5)",
     "version": "5.33.1",
     "uuid": "ab676553-b602-441f-a38d-f1296eff6537",
