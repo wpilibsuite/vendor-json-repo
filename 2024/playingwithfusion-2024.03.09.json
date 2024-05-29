@@ -1,0 +1,71 @@
+{
+    "fileName": "playingwithfusion2024.json",
+    "name": "PlayingWithFusion",
+    "version": "2024.03.09",
+    "uuid": "14b8ad04-24df-11ea-978f-2e728ce88125",
+    "frcYear": "2024",
+    "jsonUrl": "https://www.playingwithfusion.com/frc/playingwithfusion2024.json",
+    "mavenUrls": [
+        "https://www.playingwithfusion.com/frc/maven/"
+    ],
+    "javaDependencies": [
+        {
+            "groupId": "com.playingwithfusion.frc",
+            "artifactId": "PlayingWithFusion-java",
+            "version": "2024.03.09"
+        }
+    ],
+    "jniDependencies": [
+        {
+            "groupId": "com.playingwithfusion.frc",
+            "artifactId": "PlayingWithFusion-driver",
+            "version": "2024.03.09",
+            "isJar": false,
+            "skipInvalidPlatforms": true,
+            "validPlatforms": [
+                "linuxathena",
+                "windowsx86-64",
+                "linuxx86-64",
+                "osxuniversal",
+                "linuxarm32",
+                "linuxarm64"
+            ]
+        }
+    ],
+    "cppDependencies": [
+        {
+            "groupId": "com.playingwithfusion.frc",
+            "artifactId": "PlayingWithFusion-cpp",
+            "version": "2024.03.09",
+            "headerClassifier": "headers",
+            "sharedLibrary": false,
+            "libName": "PlayingWithFusion",
+            "skipInvalidPlatforms": true,
+            "binaryPlatforms": [
+                "linuxathena",
+                "windowsx86-64",
+                "linuxx86-64",
+                "osxuniversal",
+                "linuxarm32",
+                "linuxarm64"
+            ]
+        },
+        {
+            "groupId": "com.playingwithfusion.frc",
+            "artifactId": "PlayingWithFusion-driver",
+            "version": "2024.03.09",
+            "headerClassifier": "headers",
+            "sharedLibrary": true,
+            "libName": "PlayingWithFusionDriver",
+            "skipInvalidPlatforms": true,
+            "binaryPlatforms": [
+                "linuxathena",
+                "windowsx86-64",
+                "linuxx86-64",
+                "osxuniversal",
+                "linuxarm32",
+                "linuxarm64"
+            ]
+        }
+    ]
+}
