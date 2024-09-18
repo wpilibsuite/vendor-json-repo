@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     
     # Get the ubuntu-base docker image
-    container: wpilib/ubuntu-base:18.04
+    #container: wpilib/ubuntu-base:18.04
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
