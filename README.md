@@ -10,10 +10,10 @@ Each year (e.g. competition season) has a JSON file at the root level (named `YE
 
 ### YEAR.json
 
-The root-level `YEAR.json` files (e.g. `2019.json`) provide the master directory of available vendor libraries.  It's intended to be used by IDEs such as Visual Studio Code to present a user-friendly list of available vendor libraries.
+The root-level `YEAR.json` files (e.g. `2024.json`) provide the master directory of available vendor libraries.  It's intended to be used by IDEs such as Visual Studio Code to present a user-friendly list of available vendor libraries.
 
 This json file consists of a list of dicts with the following keys:
-* path: the path within the repository to the vendor JSON file (e.g. `2019/vendor.json`)
+* path: the path within the repository to the vendor JSON file (e.g. `2024/vendor.json`)
 * name: the same as the name in the vendor JSON file
 * uuid: the same as the uuid in the vendor JSON file
 * description: a user-friendly brief description of the library -- intended to be displayed to users in list format

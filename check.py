@@ -97,13 +97,13 @@ class FileConfig:
     def getboolean(self, option):
         try:
             for section in reversed(message_context):
-                rv = self.parser.getboolean(section, option, fallback=None)
+                rv = self.parser.getboolean(section, option, fallback=True)
                 if rv is not None:
                     return rv
-            return self.parser.getboolean('global', option, fallback=False)
+            return self.parser.getboolean('global', option, fallback=True)
         except ValueError as e:
             print('{0}: could not coerce {1} to boolean: {2}'.format(basefn + '.ini', option, e), file=sys.stderr)
-            return False
+            return True
 
 file_config = FileConfig()
 
@@ -119,12 +119,13 @@ class Optional:
         self.inner = inner
 
 json_schema = {
+        'fileName': '',
         'name': '',
         'version': '',
+        'frcYear': '',
         'uuid': '',
         'mavenUrls': [''],
         'jsonUrl': '',
-        'fileName': '',
         'javaDependencies': [{
             'groupId': '',
             'artifactId': '',
@@ -495,6 +496,8 @@ def check_cpp_artifacts(dep, fetcher):
             if binary is None:
                 if failok:
                     info('could not fetch optional binary platform {0} build {1}'.format(platform, build))
+                elif platform == 'windowsx86':
+                    warn('WPILib no longer builds for 32-bit')
                 else:
                     error('could not fetch required C++ binary platform {0} build {1}'.format(platform, build))
             else:
@@ -510,7 +513,10 @@ def check_jni_artifacts(dep, fetcher):
     for platform in dep.get('validPlatforms', []):
         fn, binary = fetcher.fetch(platform)
         if binary is None:
-            error('could not fetch required JNI binary platform {0}'.format(platform))
+            if platform == 'windowsx86':
+                warn('WPILib no longer builds for 32-bit')
+            else:
+                error('could not fetch required JNI binary platform {0}'.format(platform))
         else:
             try:
                 with ZipFile(io.BytesIO(binary)) as zf:
