@@ -2,7 +2,7 @@
   "fileName": "ReduxLib_2024.json",
   "name": "ReduxLib",
   "version": "2024.1.1",
-  "frcYear": 2024,
+  "frcYear": "2024",
   "uuid": "151ecca8-670b-4026-8160-cdd2679ef2bd",
   "mavenUrls": [
     "https://maven.reduxrobotics.com/"
