@@ -1,0 +1,10 @@
+[
+  {
+    "path": "2025/WPILibNewCommands.json",
+    "name": "WPILibNewCommands",
+    "version": "25.0.0",
+    "uuid": "111e20f7-815e-48f8-9dd6-e675ce75b266",
+    "description": "Vendordep for WPILib Commands",
+    "website": "https://docs.wpilib.org/en/stable/docs/software/commandbased/index.html"
+  }
+]
