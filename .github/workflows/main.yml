@@ -21,14 +21,30 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Fetch all history so we can use git diff
 
-    # Installs dependencies
     - name: Install dependencies
       run: sudo pip3 install pyelftools pefile
 
-    # Runs check
     - name: Run check
       run: |
-        ./check.py **/*.json
+        # Determine the base commit
+        if [ "${{ github.event_name }}" = "pull_request" ]; then
+          git fetch origin ${{ github.base_ref }}:${{ github.base_ref }}
+          BASE_COMMIT=$(git merge-base HEAD ${{ github.base_ref }})
+        else
+          BASE_COMMIT=${{ github.event.before }}
+        fi
+        echo "Base commit: $BASE_COMMIT"
+
+        # Get list of changed JSON files
+        git diff --diff-filter=AM --name-only $BASE_COMMIT HEAD | grep '\.json$' > changed_json_files.txt
+
+        # Run check.py on each changed JSON file
+        if [ -s changed_json_files.txt ]; then
+          xargs -a changed_json_files.txt ./check.py
+        else
+          echo "No JSON files changed"
+        fi
