@@ -292,6 +292,18 @@ def check_cpp_shared_linux(libf, arch, debug):
         'wpiHal',
         'wpiutil',
         ])
+    if arch == 'athena':
+        if year == "2025":
+            exclude_libs.update([
+                'libNiFpga.so.13',
+                'libNiFpgaLv.so.13',
+                'libniriodevenum.so.1',
+                'libniriosession.so.1',
+                'libNiRioSrv.so.13',
+                'libRoboRIO_FRC_ChipObject.so.19',
+                'libvisa.so',
+                'libFRC_NetworkCommunication.so.19',
+                ])
     dep_libs = []
     for section in lib.iter_sections():
         if not isinstance(section, DynamicSection):

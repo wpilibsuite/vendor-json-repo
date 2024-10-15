@@ -3,10 +3,10 @@
 name: CI
 
 # Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
+# events but only for the main branch
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -15,9 +15,6 @@ jobs:
   run-json-checker:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    
-    # Get the ubuntu-base docker image
-    #container: wpilib/ubuntu-base:18.04
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -32,19 +29,34 @@ jobs:
       run: |
         # Determine the base commit
         if [ "${{ github.event_name }}" = "pull_request" ]; then
-          git fetch origin ${{ github.base_ref }}:${{ github.base_ref }}
-          BASE_COMMIT=$(git merge-base HEAD ${{ github.base_ref }})
+          git fetch --no-tags --prune --progress --no-recurse-submodules origin ${{ github.base_ref }}
+          BASE_COMMIT=$(git merge-base HEAD origin/${{ github.base_ref }})
         else
           BASE_COMMIT=${{ github.event.before }}
         fi
         echo "Base commit: $BASE_COMMIT"
 
-        # Get list of changed JSON files
-        git diff --diff-filter=AM --name-only $BASE_COMMIT HEAD | grep '\.json$' > changed_json_files.txt
+        # Get list of added or modified JSON files in subdirectories
+        git diff --diff-filter=AM --name-only $BASE_COMMIT HEAD | grep '.*/.*\.json$' > changed_json_files.txt
 
-        # Run check.py on each changed JSON file
+        # Output the list of files
+        echo "Changed JSON files in subdirectories:"
+        cat changed_json_files.txt
+
+        # Run check.py on each existing JSON file
         if [ -s changed_json_files.txt ]; then
-          xargs -a changed_json_files.txt ./check.py
+          while read -r file; do
+            if [ -f "$file" ]; then
+              if [ -s "$file" ]; then
+                echo "Processing $file"
+                ./check.py "$file"
+              else
+                echo "Warning: $file is empty."
+              fi
+            else
+              echo "Warning: $file does not exist."
+            fi
+          done < changed_json_files.txt
         else
-          echo "No JSON files changed"
+          echo "No JSON files changed in subdirectories"
         fi
