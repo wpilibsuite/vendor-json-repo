@@ -62,7 +62,7 @@ def info(s):
 
 verbose = 0
 local_maven = None
-year = "2019"
+year = "2025"
 
 def parse_args():
     """Parse command line arguments.  Returns list of filenames."""
@@ -76,7 +76,7 @@ def parse_args():
     global verbose, local_maven, year
     verbose = args.verbose or 0
     local_maven = args.local_maven
-    year = args.year or "2019"
+    year = args.year or "2025"
 
     return args.file
 
@@ -292,18 +292,6 @@ def check_cpp_shared_linux(libf, arch, debug):
         'wpiHal',
         'wpiutil',
         ])
-    if arch == 'athena':
-        if year == "2019":
-            exclude_libs.update([
-                'libNiFpga.so.13',
-                'libNiFpgaLv.so.13',
-                'libniriodevenum.so.1',
-                'libniriosession.so.1',
-                'libNiRioSrv.so.13',
-                'libRoboRIO_FRC_ChipObject.so.19',
-                'libvisa.so',
-                'libFRC_NetworkCommunication.so.19',
-                ])
     dep_libs = []
     for section in lib.iter_sections():
         if not isinstance(section, DynamicSection):
