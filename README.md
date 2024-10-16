@@ -17,7 +17,7 @@ This json file consists of a list of dicts with the following keys:
 * name: the same as the name in the vendor JSON file (`<vendor>-<version>.json`)
 * uuid: the same as the uuid in the vendor JSON file
 * description: a user-friendly brief description of the library -- intended to be displayed to users in list format
-* website: URL of the vendor website (e.g. a site with documentation / tutorials / tools installers)
+* website: URL of the vendor's website (e.g. a site with documentation / tutorials / tools installers)
 
 ## JSON checker
 
