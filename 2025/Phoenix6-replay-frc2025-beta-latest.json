@@ -7,7 +7,7 @@
     "mavenUrls": [
         "https://maven.ctr-electronics.com/release/"
     ],
-    "jsonUrl": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-replay-frc2025-latest.json",
+    "jsonUrl": "https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-replay-frc2025-beta-latest.json",
     "conflictsWith": [
         {
             "uuid": "3fcf3402-e646-4fa6-971e-18afe8173b1a",
