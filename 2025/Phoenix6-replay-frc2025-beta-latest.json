@@ -2,7 +2,7 @@
     "fileName": "Phoenix6.json",
     "name": "CTRE-Phoenix (v6) Replay",
     "version": "25.0.0-beta-1",
-    "frcYear": 2025,
+    "frcYear": "2025",
     "uuid": "e7900d8d-826f-4dca-a1ff-182f658e98af",
     "mavenUrls": [
         "https://maven.ctr-electronics.com/release/"
