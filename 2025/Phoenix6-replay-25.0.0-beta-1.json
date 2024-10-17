@@ -223,7 +223,7 @@
             "groupId": "com.ctre.phoenix6.replay",
             "artifactId": "wpiapi-cpp-replay",
             "version": "25.0.0-beta-1",
-            "libName": "CTRE_Phoenix6_WPI_Replay",
+            "libName": "CTRE_Phoenix6_WPIReplay",
             "headerClassifier": "headers",
             "sharedLibrary": true,
             "skipInvalidPlatforms": true,
