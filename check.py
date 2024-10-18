@@ -556,7 +556,7 @@ def check_file(filename):
         error('no C++ dependencies (at least one is required)')
     
     if j['fileName'] != filename:
-        error('filename does not match filename key')
+        error('{0} does not match filename key: {1}'.format(j['fileName'], filename))
 
     # should have linuxathena as at least one of the cppDependencies platforms
     if j['cppDependencies']:
