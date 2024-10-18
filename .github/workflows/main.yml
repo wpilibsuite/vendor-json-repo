@@ -9,6 +9,9 @@ on:
     branches: [ main ]
   pull_request:
 
+env:
+  YEAR: 2025
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "run-json-checker"
@@ -36,7 +39,6 @@ jobs:
         fi
         echo "Base commit: $BASE_COMMIT"
 
-        set +e
         # Get list of added or modified JSON files in subdirectories
         git diff --diff-filter=AM --name-only $BASE_COMMIT HEAD | grep '.*/.*\.json$' > changed_json_files.txt || true
 
@@ -59,6 +61,6 @@ jobs:
             fi
           done < changed_json_files.txt
         else
-          echo "No JSON files changed in subdirectories, checking all"
-          ./check.py **/*.json
+          echo "No JSON files changed in subdirectories, checking year: $YEAR"
+          ./check.py $YEAR/*.json
         fi
