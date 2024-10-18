@@ -30,5 +30,13 @@
     "uuid": "ab676553-b602-441f-a38d-f1296eff6537",
     "description": "Libraries for Phoenix 5 devices",
     "website": "https://docs.ctr-electronics.com/"
+  },
+  {
+    "path": "2025/PathplannerLib-2025.0.0-beta-3.json",
+    "name": "PathPlannerLib",
+    "version": "2025.0.0-beta-3",
+    "uuid": "1b42324f-17c6-4875-8e77-1c312bc8c786",
+    "description": "PathPlanner's powerful robot-side vendor library",
+    "website": "https://pathplanner.dev/pathplannerlib.html"
   }
 ]
