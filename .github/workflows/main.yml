@@ -38,7 +38,7 @@ jobs:
 
         set +e
         # Get list of added or modified JSON files in subdirectories
-        git diff --diff-filter=AM --name-only $BASE_COMMIT HEAD | grep '.*/.*\.json$' > changed_json_files.txt
+        git diff --diff-filter=AM --name-only $BASE_COMMIT HEAD | grep '.*/.*\.json$' > changed_json_files.txt || true
 
         # Output the list of files
         echo "Changed JSON files in subdirectories:"
