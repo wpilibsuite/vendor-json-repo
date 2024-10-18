@@ -58,5 +58,6 @@ jobs:
             fi
           done < changed_json_files.txt
         else
-          echo "No JSON files changed in subdirectories"
+          echo "No JSON files changed in subdirectories, checking all"
+          ./check.py **/*.json
         fi
