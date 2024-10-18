@@ -42,12 +42,12 @@ jobs:
         # Get list of added or modified JSON files in subdirectories
         git diff --diff-filter=AM --name-only $BASE_COMMIT HEAD | grep '.*/.*\.json$' > changed_json_files.txt || true
 
-        # Output the list of files
-        echo "Changed JSON files in subdirectories:"
-        cat changed_json_files.txt
-
         # Run check.py on each existing JSON file
         if [ -s changed_json_files.txt ]; then
+          # Output the list of files
+          echo "Changed JSON files in subdirectories:"
+          cat changed_json_files.txt
+
           while read -r file; do
             if [ -f "$file" ]; then
               if [ -s "$file" ]; then
