@@ -291,6 +291,9 @@ def check_cpp_shared_linux(libf, arch, debug):
         'ntcore',
         'wpiHal',
         'wpiutil',
+        'wpimath',
+        'wpinet',
+        'wpilibNewCommands',
         ])
     if arch == 'athena':
         if year == "2025":
@@ -300,9 +303,9 @@ def check_cpp_shared_linux(libf, arch, debug):
                 'libniriodevenum.so.1',
                 'libniriosession.so.1',
                 'libNiRioSrv.so.13',
-                'libRoboRIO_FRC_ChipObject.so.19',
+                'libRoboRIO_FRC_ChipObject.so.25',
                 'libvisa.so',
-                'libFRC_NetworkCommunication.so.19',
+                'libFRC_NetworkCommunication.so.25',
                 ])
     dep_libs = []
     for section in lib.iter_sections():
@@ -342,6 +345,10 @@ def check_cpp_shared_windows(libdata, arch, debug):
         'api-ms-win-crt-heap-l1-1-0.dll',
         'api-ms-win-crt-utility-l1-1-0.dll',
         'api-ms-win-crt-convert-l1-1-0.dll',
+        'api-ms-win-crt-stdio-l1-1-0.dll',
+        'api-ms-win-crt-filesystem-l1-1-0.dll',
+        'api-ms-win-crt-locale-l1-1-0.dll',
+        'api-ms-win-crt-math-l1-1-0.dll'
         ])
     exclude_libs.update('{0}{1}.dll'.format(l, 'd' if debug else '').lower() for l in [
         'wpilibc',
@@ -350,8 +357,12 @@ def check_cpp_shared_windows(libdata, arch, debug):
         'ntcore',
         'wpiHal',
         'wpiutil',
+        'wpimath',
+        'wpinet',
+        'wpilibNewCommands',
         'MSVCP140',
         'VCRUNTIME140',
+        'VCRUNTIME140_1',
         'ucrtbase',
         ])
     dep_libs = []
