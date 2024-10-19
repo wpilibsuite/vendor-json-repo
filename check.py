@@ -9,6 +9,7 @@ import os
 import sys
 import urllib.request
 import uuid
+import pathlib
 from zipfile import ZipFile, BadZipFile
 
 try:
@@ -38,6 +39,7 @@ json_filename = ''
 got_error = 0
 got_warn = 0
 message_context = []
+cache_directory = None
 
 def msg(t, s):
     ctx = ': '.join(message_context) + ': ' if message_context else ''
@@ -64,19 +66,21 @@ verbose = 0
 local_maven = None
 year = "2025"
 
-def parse_args():
+def parse_args(argv):
     """Parse command line arguments.  Returns list of filenames."""
     parser = argparse.ArgumentParser(description='Checks a vendor json file')
     parser.add_argument('--verbose', '-v', action='count', help='increase the verbosity of output')
     parser.add_argument('--local-maven', help='directory to use for artifacts instead of fetching from mavenUrls')
     parser.add_argument('--year', '-y', help='FRC competition season year (used to set known libraries)')
+    parser.add_argument('--cache_directory', type=pathlib.Path, help='Optional. If present will set up a download cache in this directory to prevent re-downloading artifacts. Should be used for debugging purposes only.')
     parser.add_argument('file', nargs='+', help='json file to parse')
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
-    global verbose, local_maven, year
+    global verbose, local_maven, year, cache_directory
     verbose = args.verbose or 0
     local_maven = args.local_maven
     year = args.year or "2025"
+    cache_directory = args.cache_directory
 
     return args.file
 
@@ -208,11 +212,22 @@ class MavenFetcher:
         else:
             for baseurl in self.urls:
                 url = baseurl + self.path + fn
+                maybe_cached_file = None
+                if cache_directory:
+                    maybe_cached_file = cache_directory / (self.path + fn)
+                    if maybe_cached_file.exists():
+                        if verbose >= 2:
+                            print(f"Found a cache hit for {maybe_cached_file}")
+                        return fn, maybe_cached_file.read_bytes()
+
                 if verbose >= 1:
                     print('downloading "{0}"'.format(url))
                 try:
                     with urlopener.open(url) as f:
                         result = f.read()
+                    if maybe_cached_file:
+                        maybe_cached_file.parent.mkdir(parents=True, exist_ok=True)
+                        maybe_cached_file.write_bytes(result)
                 except urllib.error.HTTPError as e:
                     if not failok:
                         warn('could not fetch url "{0}": {1}'.format(url, e))
@@ -629,7 +644,7 @@ def check_file(filename):
 
 def main():
     had_errors = False
-    for fn in parse_args():
+    for fn in parse_args(sys.argv[1:]):
         global json_filename, got_error, got_warn
         json_filename = fn
         got_error = 0
