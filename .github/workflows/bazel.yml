@@ -23,7 +23,7 @@ jobs:
 
     - name: Maybe setup BuildBuddy key
       env:
-        API_KEY: ${{ inputs.token }}
+        API_KEY: ${{ secrets.API_KEY }}
       if: ${{ env.API_KEY != '' }}
       shell: bash
       run: |
