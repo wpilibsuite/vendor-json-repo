@@ -349,6 +349,9 @@ def check_cpp_shared_windows(libdata, arch, debug):
         'api-ms-win-crt-filesystem-l1-1-0.dll',
         'api-ms-win-crt-locale-l1-1-0.dll',
         'api-ms-win-crt-math-l1-1-0.dll'
+        'api-ms-win-crt-string-l1-1-0.dll',
+        'api-ms-win-crt-environment-l1-1-0.dll', 
+        'api-ms-win-crt-time-l1-1-0.dll'
         ])
     exclude_libs.update('{0}{1}.dll'.format(l, 'd' if debug else '').lower() for l in [
         'wpilibc',
