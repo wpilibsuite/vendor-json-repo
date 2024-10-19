@@ -1,6 +1,7 @@
 load("@rules_python//python:defs.bzl", "py_binary")
 load("@rules_python//python:pip.bzl", "compile_pip_requirements")
 load("@vendor-json-repo-pip//:requirements.bzl", "requirement")
+load("//:test_utils.bzl", "vendordep_check_test")
 
 # bazel run //:requirements.update
 compile_pip_requirements(
@@ -19,11 +20,20 @@ py_binary(
         requirement("pefile"),
     ],
 )
-load("//:test_utils.bzl", "vendordep_check_test")
-load("@rules_python//python:defs.bzl", "py_test")
 
 # Change this for local testing only.
 cache_directory = None
 
-[vendordep_check_test(vendor_file = f, cache_directory=cache_directory, allowable_warnings=None, allowable_errors=1) for f in glob(["2024/*.json"])]
-[vendordep_check_test(vendor_file = f, cache_directory=cache_directory, allowable_warnings=None, allowable_errors=0) for f in glob(["2025/*.json"])]
+[vendordep_check_test(
+    allowable_errors = 1,
+    allowable_warnings = None,
+    cache_directory = cache_directory,
+    vendor_file = f,
+) for f in glob(["2024/*.json"])]
+
+[vendordep_check_test(
+    allowable_errors = 0,
+    allowable_warnings = None,
+    cache_directory = cache_directory,
+    vendor_file = f,
+) for f in glob(["2025/*.json"])]

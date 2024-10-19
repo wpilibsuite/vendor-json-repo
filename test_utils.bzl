@@ -1,4 +1,4 @@
-load("@rules_python//python:defs.bzl", "py_binary", "py_test")
+load("@rules_python//python:defs.bzl", "py_test")
 
 def vendordep_check_test(vendor_file, allowable_warnings = 0, allowable_errors = 0, verbosity_level = "-v", cache_directory = None):
     file_no_extension = vendor_file[:-5]
@@ -52,11 +52,11 @@ if __name__ == "__main__":
 
 
 """.format(
-    vendor_file = vendor_file,
-    allowable_warnings = allowable_warnings,
-    allowable_errors = allowable_errors,
-    cache_replacement=cache_replacement,
-    verbosity_replacement=verbosity_replacement,
+        vendor_file = vendor_file,
+        allowable_warnings = allowable_warnings,
+        allowable_errors = allowable_errors,
+        cache_replacement = cache_replacement,
+        verbosity_replacement = verbosity_replacement,
     )
 
     native.genrule(
@@ -68,5 +68,5 @@ if __name__ == "__main__":
         name = test_file_base,
         srcs = [test_file_name],
         deps = ["//:check"],
-        data = [vendor_file]
+        data = [vendor_file],
     )
