@@ -1,1 +1,4 @@
 *.sw?
+
+bazel-*
+user.bazelrc

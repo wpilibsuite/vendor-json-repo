@@ -1,0 +1,25 @@
+module(
+    name = "vendor-json-repo",
+    version = "",
+    compatibility_level = 1,
+)
+
+bazel_dep(name = "rules_python", version = "0.37.0")
+
+python = use_extension("@rules_python//python/extensions:python.bzl", "python")
+python.toolchain(
+    python_version = "3.10",
+)
+use_repo(python, "python_versions")
+
+register_toolchains(
+    "@python_versions//:all",
+)
+
+pip = use_extension("@rules_python//python/extensions:pip.bzl", "pip")
+pip.parse(
+    hub_name = "vendor-json-repo-pip",
+    python_version = "3.10",
+    requirements_lock = "//:requirements_lock.txt",
+)
+use_repo(pip, "vendor-json-repo-pip")

@@ -35,3 +35,11 @@ Currently only one option is supported: `no_debug_suffix`.  Normally debug libra
 
 The check.py script requires the `pyelftools` and `pefile` dependencies be installed; use `pip3 install` to install these.
 
+## Bazel Testing
+Pyunit tests are automatically auto generated run using the checker tool against all of the vendordep json files in the repository by bazel.
+
+### Prerequisites
+- Install [Bazelisk](https://github.com/bazelbuild/bazelisk/releases) and add it to your path. Bazelisk is a wrapper that will download the correct version of bazel specified in the repository. Note: You can alias/rename the binary to `bazel` if you want to keep the familiar `bazel build` vs `bazelisk build` syntax.
+
+### Running the tests
+To run the tests, simply run `bazel test //...`. Alternatively, you can run the `checker.py` tool in a standalone mode by running `bazel run //:checker -- <command line arguments from above>`

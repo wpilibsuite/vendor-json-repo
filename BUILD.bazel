@@ -1,0 +1,39 @@
+load("@rules_python//python:defs.bzl", "py_binary")
+load("@rules_python//python:pip.bzl", "compile_pip_requirements")
+load("@vendor-json-repo-pip//:requirements.bzl", "requirement")
+load("//:test_utils.bzl", "vendordep_check_test")
+
+# bazel run //:requirements.update
+compile_pip_requirements(
+    name = "requirements",
+    extra_args = ["--allow-unsafe"],
+    requirements_in = "requirements.txt",
+    requirements_txt = "requirements_lock.txt",
+)
+
+py_binary(
+    name = "check",
+    srcs = ["check.py"],
+    visibility = ["//visibility:public"],
+    deps = [
+        requirement("pyelftools"),
+        requirement("pefile"),
+    ],
+)
+
+# Change this for local testing only.
+cache_directory = None
+
+[vendordep_check_test(
+    allowable_errors = 1,
+    allowable_warnings = None,
+    cache_directory = cache_directory,
+    vendor_file = f,
+) for f in glob(["2024/*.json"])]
+
+[vendordep_check_test(
+    allowable_errors = 0,
+    allowable_warnings = None,
+    cache_directory = cache_directory,
+    vendor_file = f,
+) for f in glob(["2025/*.json"])]
