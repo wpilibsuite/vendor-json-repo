@@ -46,5 +46,13 @@
     "uuid": "1b42324f-17c6-4875-8e77-1c312bc8c786",
     "description": "PathPlanner's powerful robot-side vendor library",
     "website": "https://pathplanner.dev/pathplannerlib.html"
+  },
+  {
+    "path": "2025/DogLog-2025.0.0.json",
+    "name": "DogLog",
+    "version": "2025.0.0",
+    "uuid": "65592ce1-2251-4a31-8e4b-2df20dacebe4",
+    "description": "Simpler logging for FRC",
+    "website": "https://doglog.dev/"
   }
 ]

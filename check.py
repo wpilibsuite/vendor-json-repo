@@ -579,10 +579,10 @@ def check_file(filename):
         error('"mavenUrls" cannot be empty')
 
     if not j['javaDependencies']:
-        error('no Java dependencies (at least one is required)')
+        warn('no Java dependencies (at least one is required)')
 
     if not j['cppDependencies']:
-        error('no C++ dependencies (at least one is required)')
+        warn('no C++ dependencies (at least one is required)')
     
     if j['fileName'] != os.path.basename(filename):
         error('{0} does not match filename key: {1}'.format(j['fileName'], os.path.basename(filename)))
