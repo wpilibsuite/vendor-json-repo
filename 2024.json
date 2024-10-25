@@ -134,5 +134,13 @@
     "uuid": "1ccce5a4-acd2-4d18-bca3-4b8047188400",
     "description": "YAGSL is a Swerve Library Developed by current and former BroncBotz mentors for all FRC Teams.",
     "website": "https://yagsl.gitbook.io/yagsl"
+  },
+  {
+    "path": "2024/ThriftyLib-0.9.3.json",
+    "name": "ThriftyLib",
+    "version": "0.9.3",
+    "uuid": "60b2694b-9e6e-4026-81ee-6f167946f4b0",
+    "description": "ThriftyLib supports the The Thrifty Bot hardware.",
+    "website": "https://docs.home.thethriftybot.com/"
   }
 ]
