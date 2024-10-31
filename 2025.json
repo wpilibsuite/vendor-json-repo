@@ -24,6 +24,14 @@
     "website": "https://docs.ctr-electronics.com/"
   },
   {
+    "path": "2025/Phoenix6-25.0.0-beta-2.json",
+    "name": "CTRE-Phoenix (v6)",
+    "version": "25.0.0-beta-2",
+    "uuid": "e995de00-2c64-4df5-8831-c1441420ff19",
+    "description": "Libraries for Phoenix 6 devices",
+    "website": "https://docs.ctr-electronics.com/"
+  },
+  {
     "path": "2025/Phoenix6-replay-25.0.0-beta-1.json",
     "name": "CTRE-Phoenix Replay (v6)",
     "version": "25.0.0-beta-1",
@@ -32,9 +40,25 @@
     "website": "https://docs.ctr-electronics.com/"
   },
   {
+    "path": "2025/Phoenix6-replay-25.0.0-beta-2.json",
+    "name": "CTRE-Phoenix Replay (v6)",
+    "version": "25.0.0-beta-2",
+    "uuid": "e7900d8d-826f-4dca-a1ff-182f658e98af",
+    "description": "Libraries for Phoenix 6 devices with Hoot Replay",
+    "website": "https://docs.ctr-electronics.com/"
+  },
+  {
     "path": "2025/Phoenix5-5.34.0-beta-1.json",
     "name": "CTRE-Phoenix (v5)",
     "version": "5.34.0-beta-1",
+    "uuid": "ab676553-b602-441f-a38d-f1296eff6537",
+    "description": "Libraries for Phoenix 5 devices",
+    "website": "https://docs.ctr-electronics.com/"
+  },
+  {
+    "path": "2025/Phoenix5-5.34.0-beta-2.json",
+    "name": "CTRE-Phoenix (v5)",
+    "version": "5.34.0-beta-2",
     "uuid": "ab676553-b602-441f-a38d-f1296eff6537",
     "description": "Libraries for Phoenix 5 devices",
     "website": "https://docs.ctr-electronics.com/"
