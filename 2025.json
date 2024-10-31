@@ -1,7 +1,7 @@
 [
   {
     "path": "2025/NavX-2025.1.1-beta-1.json",
-    "name": "NavX",
+    "name": "Studica",
     "version": "2025.1.1-beta-1",
     "uuid": "cb311d09-36e9-4143-a032-55bb2b94443b",
     "description": "Libraries for NavX-MXP and NavX-Micro",
