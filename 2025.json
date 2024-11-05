@@ -86,5 +86,13 @@
     "uuid": "65592ce1-2251-4a31-8e4b-2df20dacebe4",
     "description": "Simpler logging for FRC",
     "website": "https://doglog.dev/"
+  },
+  {
+    "path": "2025/REVLib-2025.0.0-beta-1.json",
+    "name": "REVLib",
+    "version": "2025.0.0-beta-1",
+    "uuid": "3f48eb8c-50fe-43a6-9cb7-44c86353c4cb",
+    "description": "Library for all REV devices including SPARK Flex, SPARK MAX, and Color Sensor V3",
+    "website": "https://docs.revrobotics.com/brushless/revlib/revlib-overview"
   }
 ]
