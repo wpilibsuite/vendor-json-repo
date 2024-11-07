@@ -1,0 +1,48 @@
+name: bump
+
+on: 
+  repository_dispatch:
+
+jobs:
+  bump:
+    if: github.event_name == 'repository_dispatch' && github.event.action == 'tag'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Information
+      run: |
+        echo "Version update for ${{ github.event.client_payload.package_version }}, job id ${{ github.event.client_payload.run_id }} requested"
+
+    - uses: actions/checkout@v4
+
+    - run: git switch -C photonlib-${{ github.event.client_payload.package_version }}
+
+    - uses: actions/download-artifact@v4
+      with:
+        name: photonlib-vendor-json
+        github-token: ${{ secrets.GITHUB_TOKEN }} # token with actions:read permissions on target repo
+        repository: mcm001/photonvision
+        run-id: ${{ github.event.client_payload.run_id }}
+        merge-multiple: true
+        path: "2025"
+
+    - run: find .
+    - run: git status
+    
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - run: python3 fixup_year.py 2025 ${{ github.event.client_payload.package_version }}
+
+    # Cut a new PR
+    # apparently we have to push or gh pr create gets upset
+    - name: Commit and push 
+      run: |
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<>"
+        git add .
+        git commit -m "Update vendor JSON to ${{ github.event.client_payload.package_version }}"
+        git push --set-upstream origin photonlib-${{ github.event.client_payload.package_version }} -f
+    - run: gh pr create --repo wpilibsuite/vendor-json-repo --title "Update PhotonLib to ${{ github.event.client_payload.package_version }}" --body "Automatic vendor JSON update from GitHub Actions" --base main --head photonvision:$(git branch --show-current)
+      env:
+        GH_TOKEN: ${{ secrets.VENDOR_JSON_REPO_PUSH_TOKEN }}
