@@ -110,5 +110,13 @@
     "uuid": "3f48eb8c-50fe-43a6-9cb7-44c86353c4cb",
     "description": "Library for all REV devices including SPARK Flex, SPARK MAX, and Color Sensor V3",
     "website": "https://docs.revrobotics.com/brushless/revlib/revlib-overview"
+  },
+  {
+    "path": "2025/photonlib-v2025.0.0-beta-1.json",
+    "name": "PhotonLib",
+    "version": "v2025.0.0-beta-1",
+    "uuid": "515fe07e-bfc6-11fa-b3de-0242ac130004",
+    "description": "Library for PhotonVision CV software",
+    "website": "https://docs.photonvision.org/en/latest/docs/programming/photonlib/index.html"
   }
 ]
