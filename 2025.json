@@ -110,5 +110,13 @@
     "uuid": "3f48eb8c-50fe-43a6-9cb7-44c86353c4cb",
     "description": "Library for all REV devices including SPARK Flex, SPARK MAX, and Color Sensor V3",
     "website": "https://docs.revrobotics.com/brushless/revlib/revlib-overview"
+  },
+  {
+    "path": "2025/AdvantageKit-4.0.0-alpha-1.json",
+    "name": "AdvantageKit",
+    "version": "4.0.0-alpha-1",
+    "uuid": "d820cc26-74e3-11ec-90d6-0242ac120003",
+    "description": "AdvantageKit is a logging, telemetry, and replay framework developed by Team 6328.",
+    "website": "https://docs.advantagekit.org/"
   }
 ]
