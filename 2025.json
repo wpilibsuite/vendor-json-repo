@@ -110,5 +110,13 @@
     "uuid": "3f48eb8c-50fe-43a6-9cb7-44c86353c4cb",
     "description": "Library for all REV devices including SPARK Flex, SPARK MAX, and Color Sensor V3",
     "website": "https://docs.revrobotics.com/brushless/revlib/revlib-overview"
+  },
+  {
+    "path": "2025/URCL-2025.0.0-beta-1",
+    "name": "URCL",
+    "version": "2025.0.0-beta-1",
+    "uuid": "84246d17-a797-4d1e-bd9f-c59cd8d2477c",
+    "description": "Unofficial REV-Compatible Logger for AdvantageScope",
+    "website": "https://docs.advantagescope.org/more-features/urcl"
   }
 ]
