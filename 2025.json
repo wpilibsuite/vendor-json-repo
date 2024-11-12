@@ -126,5 +126,13 @@
     "uuid": "84246d17-a797-4d1e-bd9f-c59cd8d2477c",
     "description": "Unofficial REV-Compatible Logger for AdvantageScope",
     "website": "https://docs.advantagescope.org/more-features/urcl"
+  },
+  {
+    "path": "2025/photonlib-v2025.0.0-beta-2.json",
+    "name": "PhotonLib",
+    "version": "v2025.0.0-beta-2",
+    "uuid": "515fe07e-bfc6-11fa-b3de-0242ac130004",
+    "description": "Library for PhotonVision CV software",
+    "website": "https://docs.photonvision.org/en/latest/docs/programming/photonlib/index.html"
   }
 ]
