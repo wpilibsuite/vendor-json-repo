@@ -126,5 +126,13 @@
     "uuid": "84246d17-a797-4d1e-bd9f-c59cd8d2477c",
     "description": "Unofficial REV-Compatible Logger for AdvantageScope",
     "website": "https://docs.advantagescope.org/more-features/urcl"
-  }
+  },
+  {
+    "path": "2025/photonlib-v2025.0.0-beta-5.json",
+    "name": "PhotonLib",
+    "version": "v2025.0.0-beta-5",
+    "uuid": "515fe07e-bfc6-11fa-b3de-0242ac130004",
+    "description": "PhotonVision is the free, fast, and easy-to-use vision processing solution for the FIRST Robotics Competition.",
+    "website": "https://docs.photonvision.org/en/latest/docs/programming/photonlib/adding-vendordep.html"
+}
 ]
