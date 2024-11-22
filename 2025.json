@@ -126,5 +126,13 @@
     "uuid": "84246d17-a797-4d1e-bd9f-c59cd8d2477c",
     "description": "Unofficial REV-Compatible Logger for AdvantageScope",
     "website": "https://docs.advantagescope.org/more-features/urcl"
+  },
+  {
+    "path": "2025/ReduxLib_2025.json",
+    "name": "ReduxLib",
+    "version": "2025.0.0-beta0",
+    "uuid": "151ecca8-670b-4026-8160-cdd2679ef2bd",
+    "description": "Redux Robotics 2025 Beta",
+    "website": "https://docs.reduxrobotics.com/reduxlib"
   }
 ]
