@@ -16,6 +16,14 @@
     "website": "https://github.com/Studica-Robotics/NavX"
   },
   {
+    "path": "2025/Studica-2025.1.1-beta-3.json",
+    "name": "Studica",
+    "version": "2025.1.1-beta-3",
+    "uuid": "cb311d09-36e9-4143-a032-55bb2b94443b",
+    "description": "Libraries for NavX and other Studica Products",
+    "website": "https://github.com/Studica-Robotics/NavX"
+  },
+  {
     "path": "2025/Phoenix6-25.0.0-beta-1.json",
     "name": "CTRE-Phoenix (v6)",
     "version": "25.0.0-beta-1",
@@ -80,12 +88,44 @@
     "website": "https://pathplanner.dev/pathplannerlib.html"
   },
   {
+    "path": "2025/PathplannerLib-2025.0.0-beta-4.json",
+    "name": "PathplannerLib",
+    "version": "2025.0.0-beta-4",
+    "uuid": "1b42324f-17c6-4875-8e77-1c312bc8c786",
+    "description": "PathPlanner's powerful robot-side vendor library",
+    "website": "https://pathplanner.dev/pathplannerlib.html"
+  },
+  {
     "path": "2025/DogLog-2025.0.0.json",
     "name": "DogLog",
     "version": "2025.0.0",
     "uuid": "65592ce1-2251-4a31-8e4b-2df20dacebe4",
     "description": "Simpler logging for FRC",
     "website": "https://doglog.dev/"
+  },
+  {
+    "path": "2025/REVLib-2025.0.0-beta-1.json",
+    "name": "REVLib",
+    "version": "2025.0.0-beta-1",
+    "uuid": "3f48eb8c-50fe-43a6-9cb7-44c86353c4cb",
+    "description": "Library for all REV devices including SPARK Flex, SPARK MAX, and Color Sensor V3",
+    "website": "https://docs.revrobotics.com/brushless/revlib/revlib-overview"
+  },
+  {
+    "path": "2025/REVLib-2025.0.0-beta-2.json",
+    "name": "REVLib",
+    "version": "2025.0.0-beta-2",
+    "uuid": "3f48eb8c-50fe-43a6-9cb7-44c86353c4cb",
+    "description": "Library for all REV devices including SPARK Flex, SPARK MAX, and Color Sensor V3",
+    "website": "https://docs.revrobotics.com/brushless/revlib/revlib-overview"
+  },
+  {
+    "path": "2025/URCL-2025.0.0-beta-1.json",
+    "name": "URCL",
+    "version": "2025.0.0-beta-1",
+    "uuid": "84246d17-a797-4d1e-bd9f-c59cd8d2477c",
+    "description": "Unofficial REV-Compatible Logger for AdvantageScope",
+    "website": "https://docs.advantagescope.org/more-features/urcl"
   },
   {
     "path": "2025/ReduxLib_2025.json",
