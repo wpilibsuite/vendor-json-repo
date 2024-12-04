@@ -142,5 +142,13 @@
     "uuid": "c39481e8-4a63-4a4c-9df6-48d91e4da37b",
     "description": "FRC Java Robot Simulation using a physics engine",
     "website": "https://github.com/Shenzhen-Robotics-Alliance/maple-sim"
+  },
+  {
+    "path": "2025/yagsl.json",
+    "name": "Yet Another Generic Swerve Library (YAGSL)",
+    "version": "2025.0.0",
+    "uuid": "1ccce5a4-acd2-4d18-bca3-4b8047188400",
+    "description": "YAGSL (Yet Another Generic Swerve Library) is an open-source robotics library designed to simplify and optimize the control, simulation, and configuration of swerve drive systems of all types.",
+    "website": "https://yagsl.gitbook.io/yagsl"
   }
 ]
