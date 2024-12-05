@@ -144,6 +144,14 @@
     "website": "https://docs.revrobotics.com/brushless/revlib/revlib-overview"
   },
   {
+    "path": "2025/REVLib-2025.0.0-beta-3.json",
+    "name": "REVLib",
+    "version": "2025.0.0-beta-3",
+    "uuid": "3f48eb8c-50fe-43a6-9cb7-44c86353c4cb",
+    "description": "Library for all REV devices including SPARK Flex, SPARK MAX, and Color Sensor V3",
+    "website": "https://docs.revrobotics.com/brushless/revlib/revlib-overview"
+  },
+  {
     "path": "2025/URCL-2025.0.0-beta-1.json",
     "name": "URCL",
     "version": "2025.0.0-beta-1",
