@@ -144,6 +144,14 @@
     "website": "https://github.com/Shenzhen-Robotics-Alliance/maple-sim"
   },
   {
+    "path": "2025/maple-sim-0.2.2.json",
+    "name": "maplesim",
+    "version": "0.2.2",
+    "uuid": "c39481e8-4a63-4a4c-9df6-48d91e4da37b",
+    "description": "FRC Java Robot Simulation using a physics engine",
+    "website": "https://github.com/Shenzhen-Robotics-Alliance/maple-sim"
+  },
+  {
     "path": "2025/yagsl.json",
     "name": "Yet Another Generic Swerve Library (YAGSL)",
     "version": "2025.0.0",
