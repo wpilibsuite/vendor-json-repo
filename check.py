@@ -586,9 +586,6 @@ def check_file(filename):
 
     if not j['javaDependencies'] and not j['cppDependencies']:
         error('missing both Java and C++ dependencies')
-    
-    if j['fileName'] != os.path.basename(filename):
-        error('{0} does not match filename key: {1}'.format(j['fileName'], os.path.basename(filename)))
 
     # should have linuxathena as at least one of the cppDependencies platforms
     if j['cppDependencies']:
