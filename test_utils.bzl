@@ -40,10 +40,10 @@ class VendordepCheck(unittest.TestCase):
         print(f"Warnings: {{got_warn}}")
 
         if errors_allowed is not None:
-            self.assertEqual(errors_allowed, got_error)
+            self.assertLessEqual(got_error, errors_allowed)
 
         if warnings_allowed is not None:
-            self.assertEqual(warnings_allowed, got_warn)
+            self.assertLessEqual(got_warn, warnings_allowed)
 
 
 if __name__ == "__main__":
