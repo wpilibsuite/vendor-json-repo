@@ -1,0 +1,23 @@
+name: Generate Manifest
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: mkdir outputs
+      - run: python generate_year_manifest.py -m 2025_metadata.json -j 2025 outputs/2025.json
+      - run: cp 2025/**.json outputs/2025
+      - uses: actions/upload-artifact@v4
+        with:
+          name: repository
+          path: outputs
+      # eventually upload to artifactory
