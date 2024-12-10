@@ -2,7 +2,6 @@ name: Generate Manifest
 
 on:
   push:
-    branches: [ main ]
   pull_request:
 
 jobs:
