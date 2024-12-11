@@ -19,6 +19,8 @@ def generate_entry(
     if path_prefix and not path_prefix.endswith("/"):
         path_prefix += "/"
     uuid = vendordep_data["uuid"]
+    if uuid not in library_metadata.keys():
+        raise KeyError(f"UUID for {file} not found in metadata.")
     return {
         "path": path_prefix + file.name,
         "name": library_metadata[uuid]["name"],
