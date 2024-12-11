@@ -1,4 +1,4 @@
-name: Generate Bundle
+name: Generate Bundles
 
 on:
   push:
@@ -12,8 +12,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python generate_year_bundle.py -y 2024 outputs
-      - run: python generate_year_bundle.py -y 2025 outputs
+      - run: python generate_year_bundles.py -o outputs 2024 2025
       - uses: actions/upload-artifact@v4
         with:
           name: repository

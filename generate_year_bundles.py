@@ -35,17 +35,17 @@ def generate_manifest_file(json_files: list[Path], metadata_file: Path, path_pre
     outfile.write_text(json.dumps(entries, indent=2))
 
 
-def generate_bundle(year: str, outdir: Path):
+def generate_bundle(year: str, root: Path, outdir: Path):
     """Generates a 'bundle' consisting of a YEAR.json manifest and a directory named YEAR containing all of the vendordep files
 
     Requires a metadata file YEAR_metadata.json, and a directory named YEAR containing the input vendordeps.
     """
-    json_dir = Path(year)
-    metadata = Path(f"{year}_metadata.json")
+    json_dir = root / year
+    metadata = root / f"{year}_metadata.json"
     path_prefix = year
     outdir.mkdir(parents=True, exist_ok=True)
 
-    manifest_file = Path(outdir) / Path(f"{year}.json")
+    manifest_file = Path(outdir) / f"{year}.json"
     vendordeps = [file for file in json_dir.glob("*.json")]
 
     generate_manifest_file(vendordeps, metadata, path_prefix, manifest_file)
@@ -58,12 +58,14 @@ def generate_bundle(year: str, outdir: Path):
 
 
 def main():
-    parser = argparse.ArgumentParser("Generates a manifest from vendordep json files")
-    parser.add_argument("--year", "-y", required=True, type=str)
-    parser.add_argument("outdir", type=Path)
+    parser = argparse.ArgumentParser("Generates one or more vendordep repository bundles for publication")
+    parser.add_argument("--output", "-o", type=Path, help="Directory to place the output bundles in")
+    parser.add_argument("--root", "-r", type=Path, default=Path(), help="Root directory to find metadata files and year folders. Defaults to '.'")
+    parser.add_argument("year", nargs="+", type=str, help="Years to generate bundles for")
     args = parser.parse_args()
 
-    generate_bundle(args.year, args.outdir)    
+    for year in args.year:
+        generate_bundle(year, args.root, args.output)
 
 
 if __name__ == "__main__":
