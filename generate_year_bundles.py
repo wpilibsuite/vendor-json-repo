@@ -3,15 +3,18 @@ import json
 from pathlib import Path
 import shutil
 
+
 def load_metadata(file: Path) -> dict[str, dict]:
     json_metadata = json.loads(file.read_text())
     out = {}
     for entry in json_metadata:
-      out[entry["uuid"]] = entry
+        out[entry["uuid"]] = entry
     return out
 
 
-def generate_entry(file: Path, path_prefix: str, library_metadata: dict[str, dict]) -> dict[str, str]:
+def generate_entry(
+    file: Path, path_prefix: str, library_metadata: dict[str, dict]
+) -> dict[str, str]:
     vendordep_data = json.loads(file.read_text())
     if path_prefix and not path_prefix.endswith("/"):
         path_prefix += "/"
@@ -22,11 +25,13 @@ def generate_entry(file: Path, path_prefix: str, library_metadata: dict[str, dic
         "version": vendordep_data["version"],
         "uuid": uuid,
         "description": library_metadata[uuid]["description"],
-        "website": library_metadata[uuid]["website"]
+        "website": library_metadata[uuid]["website"],
     }
 
 
-def generate_manifest_file(json_files: list[Path], metadata_file: Path, path_prefix: str, outfile: Path):
+def generate_manifest_file(
+    json_files: list[Path], metadata_file: Path, path_prefix: str, outfile: Path
+):
     """Generates a manifest for all vendordep json files in json_files."""
     library_metadata = load_metadata(metadata_file)
     entries = []
@@ -58,10 +63,22 @@ def generate_bundle(year: str, root: Path, outdir: Path):
 
 
 def main():
-    parser = argparse.ArgumentParser("Generates one or more vendordep repository bundles for publication")
-    parser.add_argument("--output", "-o", type=Path, help="Directory to place the output bundles in")
-    parser.add_argument("--root", "-r", type=Path, default=Path(), help="Root directory to find metadata files and year folders. Defaults to '.'")
-    parser.add_argument("year", nargs="+", type=str, help="Years to generate bundles for")
+    parser = argparse.ArgumentParser(
+        "Generates one or more vendordep repository bundles for publication"
+    )
+    parser.add_argument(
+        "--output", "-o", type=Path, help="Directory to place the output bundles in"
+    )
+    parser.add_argument(
+        "--root",
+        "-r",
+        type=Path,
+        default=Path(),
+        help="Root directory to find metadata files and year folders. Defaults to '.'",
+    )
+    parser.add_argument(
+        "year", nargs="+", type=str, help="Years to generate bundles for"
+    )
     args = parser.parse_args()
 
     for year in args.year:
