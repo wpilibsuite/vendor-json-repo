@@ -1,4 +1,4 @@
-name: Generate Manifest
+name: Generate Bundle
 
 on:
   push:
@@ -12,9 +12,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: mkdir -p outputs/2025
-      - run: python generate_year_manifest.py -m 2025_metadata.json -j 2025 outputs/2025.json
-      - run: cp 2025/**.json outputs/2025
+      - run: python generate_year_bundle.py -y 2024 outputs
+      - run: python generate_year_bundle.py -y 2025 outputs
       - uses: actions/upload-artifact@v4
         with:
           name: repository

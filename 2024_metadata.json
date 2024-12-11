@@ -1,0 +1,62 @@
+[
+  {
+    "uuid": "e995de00-2c64-4df5-8831-c1441420ff19",
+    "name": "CTRE-Phoenix (v6)",
+    "description": "CTR-Electronics Phoenix 6 framework",
+    "website": "https://v6.docs.ctr-electronics.com/en/latest/index.html"
+  },
+  {
+    "uuid": "ab676553-b602-441f-a38d-f1296eff6537",
+    "name": "CTRE-Phoenix (v5)",
+    "description": "CTR-Electronics Phoenix 5 framework",
+    "website": "https://v5.docs.ctr-electronics.com/en/latest/index.html"
+  },
+  {
+    "uuid": "3f48eb8c-50fe-43a6-9cb7-44c86353c4cb",
+    "name": "REVLib",
+    "description": "REV Robotics REVLib C++/Java",
+    "website": "https://docs.revrobotics.com/brushless/spark-max/revlib"
+  },
+  {
+    "uuid": "287cff6e-1b60-4412-8059-f6834fb30e30",
+    "name": "ChoreoLib",
+    "description": "A graphical tool for planning time-optimized trajectories for autonomous mobile robots in the FIRST Robotics Competition.",
+    "website": "https://github.com/SleipnirGroup/Choreo"
+  },
+  {
+    "uuid": "cb311d09-36e9-4143-a032-55bb2b94443b",
+    "name": "NavX",
+    "description": "navX2-MXP includes software which makes navX2-MXP easier to understand, integrate and use with FIRST FRC and FTC robots",
+    "website": "https://pdocs.kauailabs.com/navx-mxp/software/roborio-libraries/"
+  },
+  {
+    "uuid": "1b42324f-17c6-4875-8e77-1c312bc8c786",
+    "name": "PathplannerLib",
+    "description": "PathPlanner is a motion profile generator for FRC robots created by team 3015.",
+    "website": "https://pathplanner.dev/home.html"
+  },
+  {
+    "uuid": "515fe07e-bfc6-11fa-b3de-0242ac130004",
+    "name": "PhotonLib",
+    "description": "PhotonVision is the free, fast, and easy-to-use vision processing solution for the FIRST Robotics Competition.",   
+    "website": "https://docs.photonvision.org/en/latest/docs/programming/photonlib/adding-vendordep.html"
+  },
+  {
+    "uuid": "14b8ad04-24df-11ea-978f-2e728ce88125",
+    "name": "playingwithfusion",
+    "description": "This library supports the Venom motor/controller as well as the CAN enabled Time of Flight sensor.",
+    "website": "https://www.playingwithfusion.com/docview.php?docid=1205"
+  },
+  {
+    "uuid": "151ecca8-670b-4026-8160-cdd2679ef2bd",
+    "name": "ReduxLib",
+    "description": "To make performant and open products at affordable costs to teams.",
+    "website": "https://docs.reduxrobotics.com/reduxlib"
+  },
+  {
+    "uuid": "1ccce5a4-acd2-4d18-bca3-4b8047188400",
+    "name": "yagsl",
+    "description": "YAGSL is a Swerve Library Developed by current and former BroncBotz mentors for all FRC Teams.",
+    "website": "https://yagsl.gitbook.io/yagsl"
+  }
+]

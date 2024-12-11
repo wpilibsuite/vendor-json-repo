@@ -1,6 +1,7 @@
 import argparse
 import json
 from pathlib import Path
+import shutil
 
 def load_metadata(file: Path) -> dict[str, dict]:
     json_metadata = json.loads(file.read_text())
@@ -24,28 +25,45 @@ def generate_entry(file: Path, path_prefix: str, library_metadata: dict[str, dic
         "website": library_metadata[uuid]["website"]
     }
 
-def generate_manifest(json_dir: Path, metadata_file: Path, path_prefix: str, outfile: Path):
-    """Generates a manifest for all vendordep json files in json_dir."""
+
+def generate_manifest_file(json_files: list[Path], metadata_file: Path, path_prefix: str, outfile: Path):
+    """Generates a manifest for all vendordep json files in json_files."""
     library_metadata = load_metadata(metadata_file)
     entries = []
-    for file in json_dir.glob("*.json"):
+    for file in json_files:
         entries.append(generate_entry(file, path_prefix, library_metadata))
     outfile.write_text(json.dumps(entries, indent=2))
 
 
+def generate_bundle(year: str, outdir: Path):
+    """Generates a 'bundle' consisting of a YEAR.json manifest and a directory named YEAR containing all of the vendordep files
+
+    Requires a metadata file YEAR_metadata.json, and a directory named YEAR containing the input vendordeps.
+    """
+    json_dir = Path(year)
+    metadata = Path(f"{year}_metadata.json")
+    path_prefix = year
+    outdir.mkdir(parents=True, exist_ok=True)
+
+    manifest_file = Path(outdir) / Path(f"{year}.json")
+    vendordeps = [file for file in json_dir.glob("*.json")]
+
+    generate_manifest_file(vendordeps, metadata, path_prefix, manifest_file)
+
+    # Copy all vendordeps to outdir/YEAR
+    depsdir = outdir / year
+    depsdir.mkdir(exist_ok=True)
+    for file in vendordeps:
+        shutil.copy(file, depsdir)
+
+
 def main():
     parser = argparse.ArgumentParser("Generates a manifest from vendordep json files")
-    parser.add_argument("--metadata", "-m", required=True, type=Path, help="the metadata file")
-    parser.add_argument("--json-dir", "-j", required=True, type=Path, help="Directory that vendordep json files are in")
-    parser.add_argument("--path-prefix", "-p", type=str, help="Optional. Path prefix to prepend to 'path' entries in the output. Defaults to the value of --json-dir.")
-    parser.add_argument("outfile", type=Path)
+    parser.add_argument("--year", "-y", required=True, type=str)
+    parser.add_argument("outdir", type=Path)
     args = parser.parse_args()
 
-    path_prefix = args.json_dir.as_posix()
-    if args.path_prefix:
-        path_prefix = args.path_prefix
-
-    generate_manifest(args.json_dir, args.metadata, path_prefix, args.outfile)
+    generate_bundle(args.year, args.outdir)    
 
 
 if __name__ == "__main__":
