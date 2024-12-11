@@ -17,6 +17,7 @@ jobs:
         with:
           name: bundles
           path: bundles
+          retention-days: 1
 
   publish:
     if: github.repository == 'wpilibsuite/vendor-json-repo' && github.ref == 'refs/heads/main'
