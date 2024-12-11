@@ -12,9 +12,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python generate_year_bundles.py -o outputs 2024 2025
+      - run: python generate_year_bundles.py -o bundles 2024 2025
       - uses: actions/upload-artifact@v4
         with:
           name: repository
-          path: outputs
+          path: bundles
       # eventually upload to artifactory
