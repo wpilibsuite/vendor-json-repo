@@ -133,13 +133,13 @@ json_schema = {
         'requires': Optional([{
             'uuid': '',
             'errorMessage': '',
-            'offlineFileName': ''
+            'offlineFileName': '',
+            'onlineUrl': '',
         }]),
         'conflictsWith': Optional([{
             'uuid': '',
             'errorMessage': '',
             'offlineFileName': '',
-            'onlineUrl': ''
         }]),
         'javaDependencies': [{
             'groupId': '',
