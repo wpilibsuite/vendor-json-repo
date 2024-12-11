@@ -1,0 +1,20 @@
+name: Generate Bundles
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python generate_year_bundles.py -o bundles 2024 2025
+      - uses: actions/upload-artifact@v4
+        with:
+          name: repository
+          path: bundles
+      # eventually upload to artifactory
