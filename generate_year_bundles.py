@@ -1,7 +1,7 @@
 import argparse
 import json
-from pathlib import Path
 import shutil
+from pathlib import Path
 
 
 def load_metadata(file: Path) -> dict[str, dict]:

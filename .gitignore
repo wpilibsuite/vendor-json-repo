@@ -3,4 +3,4 @@
 bazel-*
 user.bazelrc
 
-outputs
+bundles
