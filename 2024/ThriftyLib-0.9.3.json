@@ -1,0 +1,36 @@
+{
+    "fileName": "ThriftyLib.json",
+    "name": "ThriftyLib",
+    "version": "0.9.3",
+    "frcYear": "2024",
+    "uuid": "60b2694b-9e6e-4026-81ee-6f167946f4b0",
+    "mavenUrls": [
+            "https://docs.home.thethriftybot.com/ThriftyLib/Latest/ThriftyLib_2024_0-9-3.jar"
+    ],
+    "jsonUrl": "https://docs.home.thethriftybot.com/ThriftyLib/Latest/ThriftyLib.json",
+    "javaDependencies": [
+        {
+            "groupId": "com.TheThriftyBot.frc",
+            "artifactId": "TheThriftyBot-java",
+            "version": "0.9.3"
+        }
+    ],
+    "jniDependencies": [
+        {
+            "groupId": "com.thethriftybot.frc",
+            "artifactId": "thethriftybot-driver",
+            "version": "0.9.3",
+            "skipInvalidPlatforms": true,
+            "isJar": false,
+            "validPlatforms": [
+                "windowsx86-64",
+                "windowsx86",
+                "linuxarm64",
+                "linuxx86-64",
+                "linuxathena",
+                "linuxarm32",
+                "osxuniversal"
+            ]
+        }
+    ]
+}
