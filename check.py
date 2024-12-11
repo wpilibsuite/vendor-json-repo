@@ -130,6 +130,17 @@ json_schema = {
         'uuid': '',
         'mavenUrls': [''],
         'jsonUrl': '',
+        'requires': Optional([{
+            'uuid': '',
+            'errorMessage': '',
+            'offlineFileName': ''
+        }]),
+        'conflictsWith': Optional([{
+            'uuid': '',
+            'errorMessage': '',
+            'offlineFileName': '',
+            'onlineUrl': ''
+        }]),
         'javaDependencies': [{
             'groupId': '',
             'artifactId': '',
