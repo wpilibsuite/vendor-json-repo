@@ -142,6 +142,7 @@ json_schema = {
             'isJar': False,
             'validPlatforms': [''],
             'skipInvalidPlatforms': False,
+            'simMode': Optional(''),
             }],
         'cppDependencies': [{
             'groupId': '',
@@ -154,6 +155,7 @@ json_schema = {
             'binaryPlatforms': Optional(['']),
             'skipInvalidPlatforms': Optional(False),
             'sharedLibrary': Optional(False),
+            'simMode': Optional(''),
             }],
         }
 
