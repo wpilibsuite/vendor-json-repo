@@ -24,6 +24,14 @@
     "website": "https://github.com/Studica-Robotics/NavX"
   },
   {
+    "path": "2025/Studica-2025.1.1-beta-4.json",
+    "name": "Studica",
+    "version": "2025.1.1-beta-4",
+    "uuid": "cb311d09-36e9-4143-a032-55bb2b94443b",
+    "description": "Libraries for NavX and other Studica Products",
+    "website": "https://github.com/Studica-Robotics/NavX"
+  },
+  {
     "path": "2025/Phoenix6-25.0.0-beta-1.json",
     "name": "CTRE-Phoenix (v6)",
     "version": "25.0.0-beta-1",
