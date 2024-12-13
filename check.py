@@ -130,6 +130,17 @@ json_schema = {
         'uuid': '',
         'mavenUrls': [''],
         'jsonUrl': '',
+        'requires': Optional([{
+            'uuid': '',
+            'errorMessage': '',
+            'offlineFileName': '',
+            'onlineUrl': '',
+        }]),
+        'conflictsWith': Optional([{
+            'uuid': '',
+            'errorMessage': '',
+            'offlineFileName': '',
+        }]),
         'javaDependencies': [{
             'groupId': '',
             'artifactId': '',
@@ -142,6 +153,7 @@ json_schema = {
             'isJar': False,
             'validPlatforms': [''],
             'skipInvalidPlatforms': False,
+            'simMode': Optional(''),
             }],
         'cppDependencies': [{
             'groupId': '',
@@ -154,6 +166,7 @@ json_schema = {
             'binaryPlatforms': Optional(['']),
             'skipInvalidPlatforms': Optional(False),
             'sharedLibrary': Optional(False),
+            'simMode': Optional(''),
             }],
         }
 
