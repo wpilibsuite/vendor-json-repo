@@ -4,8 +4,19 @@ import shutil
 from pathlib import Path
 
 
+def check_metadata_schema(metadata: list[dict]):
+    required_keys = {"uuid", "name", "website", "description"}
+    for entry in metadata:
+        # no nested types, so just check root keys
+        if not required_keys.issubset(entry.keys()):
+            raise KeyError(
+                f"Missing one or more required keys: {required_keys - entry.keys()}, metadata listing: {entry}"
+            )
+
+
 def load_metadata(file: Path) -> dict[str, dict]:
     json_metadata = json.loads(file.read_text())
+    check_metadata_schema(json_metadata)
     out = {}
     for entry in json_metadata:
         out[entry["uuid"]] = entry
@@ -13,21 +24,20 @@ def load_metadata(file: Path) -> dict[str, dict]:
 
 
 def generate_entry(
-    file: Path, path_prefix: str, library_metadata: dict[str, dict]
+    file: Path, path_prefix: str, metadata_database: dict[str, dict]
 ) -> dict[str, str]:
     vendordep_data = json.loads(file.read_text())
     if path_prefix and not path_prefix.endswith("/"):
         path_prefix += "/"
     uuid = vendordep_data["uuid"]
-    if uuid not in library_metadata.keys():
+    if uuid not in metadata_database.keys():
         raise KeyError(f"UUID for {file} not found in metadata.")
-    return {
+    metadata = metadata_database[uuid]
+    # Metadata schemas have already been checked for required keys, so we can just add all the values to the output
+    # This allows optional keys to be added as necessary without changing generation
+    return metadata | {
         "path": path_prefix + file.name,
-        "name": library_metadata[uuid]["name"],
         "version": vendordep_data["version"],
-        "uuid": uuid,
-        "description": library_metadata[uuid]["description"],
-        "website": library_metadata[uuid]["website"],
     }
 
 
@@ -35,11 +45,11 @@ def generate_manifest_file(
     json_files: list[Path], metadata_file: Path, path_prefix: str, outfile: Path
 ):
     """Generates a manifest for all vendordep json files in json_files."""
-    library_metadata = load_metadata(metadata_file)
+    metadata_database = load_metadata(metadata_file)
     entries = []
     for file in json_files:
-        entries.append(generate_entry(file, path_prefix, library_metadata))
-    outfile.write_text(json.dumps(entries, indent=2))
+        entries.append(generate_entry(file, path_prefix, metadata_database))
+    outfile.write_text(json.dumps(entries, indent=2), newline="\n")
 
 
 def generate_bundle(year: str, root: Path, outdir: Path):
