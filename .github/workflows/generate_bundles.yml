@@ -1,0 +1,36 @@
+name: Generate + Publish Bundles
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python generate_year_bundles.py -o bundles 2024 2025
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bundles
+          path: bundles
+          retention-days: 1
+
+  publish:
+    if: github.repository == 'wpilibsuite/vendor-json-repo' && github.ref == 'refs/heads/main'
+    needs: [generate]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: jfrog/setup-jfrog-cli@v4
+        with:
+          disable-auto-build-publish: true
+        env:
+          JF_ENV_1: ${{ secrets.ARTIFACTORY_CLI_SECRET }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: bundles
+          path: bundles
+      - run: jf rt upload "bundles/(*)" "vendordeps/vendordep-marketplace/{1}"  --sync-deletes "vendordeps/vendordep-marketplace/" --quiet
