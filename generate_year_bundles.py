@@ -79,7 +79,7 @@ def main():
         "Generates one or more vendordep repository bundles for publication"
     )
     parser.add_argument(
-        "--output", "-o", type=Path, help="Directory to place the output bundles in"
+        "--output", "-o", type=Path, default="bundles", help="Directory to place the output bundles in"
     )
     parser.add_argument(
         "--root",

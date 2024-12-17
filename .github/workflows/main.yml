@@ -8,7 +8,7 @@ on:
   pull_request:
 
 env:
-  YEAR: 2025
+  YEAR: 2025beta
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
