@@ -39,11 +39,11 @@ YEAR_2024_FILES = glob(["2024/*.json"])
 ) for f in YEAR_2024_FILES]
 # year_bundle_test(year="2024", year_files=YEAR_2024_FILES) # Disable the test because there a several invalid entries
 
-YEAR_2025_FILES = glob(["2025/*.json"])
+YEAR_2025BETA_FILES = glob(["2025beta/*.json"])
 [vendordep_check_test(
     allowable_errors = 0,
     allowable_warnings = None,
     cache_directory = cache_directory,
     vendor_file = f,
-) for f in YEAR_2025_FILES]
-year_bundle_test(year="2025", year_files=YEAR_2025_FILES)
+) for f in YEAR_2025BETA_FILES]
+year_bundle_test(year="2025beta", year_files=YEAR_2025BETA_FILES)
