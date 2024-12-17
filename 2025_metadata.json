@@ -2,8 +2,8 @@
   {
     "uuid": "cb311d09-36e9-4143-a032-55bb2b94443b",
     "name": "Studica",
-    "description": "Libraries for NavX-MXP and NavX-Micro",
-    "website": "https://pdocs.kauailabs.com/navx-mxp/software/roborio-libraries/"
+    "description": "Libraries for NavX and other Studica Products",
+    "website": "https://github.com/Studica-Robotics/NavX/"
   },
   {
     "uuid": "e995de00-2c64-4df5-8831-c1441420ff19",
