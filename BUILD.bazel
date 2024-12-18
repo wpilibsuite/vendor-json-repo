@@ -21,12 +21,6 @@ py_binary(
     ],
 )
 
-py_binary(
-    name = "check_year_bundle",
-    srcs = ["check_year_bundle.py"],
-    visibility = ["//visibility:public"],
-)
-
 # Change this for local testing only.
 cache_directory = None
 
