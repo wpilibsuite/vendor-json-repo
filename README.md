@@ -96,7 +96,7 @@ To create a new bundle and add it to the CI job to be checked, generated, and pu
 * Add a new test configuration to `BUILD.bazel`
 
 ## Automatically creating pull requests
-If your libraries CI creates a new vendordep.json file, you can use an action contained in this repository to automatically create a pull request to add your changes.
+If your libraries CI creates a new vendordep.json file, you can use an action contained in this repository to automatically create a pull request to add your changes. In order for the action to work, you must define a secret with write access to be able to create the pull request.
 
 Here is an example workflow:
 

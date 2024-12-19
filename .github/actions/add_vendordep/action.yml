@@ -25,10 +25,10 @@ runs:
   steps:
     - uses: actions/checkout@v4
       with:
-        repository: 'pjreiniger/vendor-json-repo' # TODO
+        repository: 'wpilibsuite/vendor-json-repo'
         fetch-depth: 0  # Fetch all history so we can use git diff
         path: "vendor-json-repo"
-        ref: "add_vendordep_action" # TODO
+        ref: "main"
 
     - uses: actions/setup-python@v5
       with:
