@@ -1,3 +1,4 @@
+import os
 import argparse
 import json
 import shutil
@@ -94,7 +95,7 @@ def main():
     args = parser.parse_args()
 
     # Helper for running with bazel
-    if not args.output.is_dir():
+    if "RUNFILES_DIR" in os.environ:
         args.output = args.output.parent
 
     for year in args.year:
