@@ -27,6 +27,11 @@ py_binary(
     visibility = ["//visibility:public"],
 )
 
+py_binary(
+    name = "add_vendordep",
+    srcs = ["add_vendordep.py"],
+)
+
 # Change this for local testing only.
 cache_directory = None
 
