@@ -1,35 +1,35 @@
 [
   {
-    "uuid": "515fe07e-bfc6-11fa-b3de-0242ac130004",
-    "name": "PhotonLib",
-    "description": "PhotonVision is the free, fast, and easy-to-use vision processing solution for the FIRST Robotics Competition.",
-    "website": "https://docs.photonvision.org/en/latest/docs/programming/photonlib/adding-vendordep.html",
-    "path": "2024/photonlib-v2024.3.1.json",
-    "version": "v2024.3.1"
-  },
-  {
-    "uuid": "3f48eb8c-50fe-43a6-9cb7-44c86353c4cb",
-    "name": "REVLib",
-    "description": "REV Robotics REVLib C++/Java",
-    "website": "https://docs.revrobotics.com/brushless/spark-max/revlib",
-    "path": "2024/REVLib-2024.2.1.json",
-    "version": "2024.2.1"
-  },
-  {
-    "uuid": "3f48eb8c-50fe-43a6-9cb7-44c86353c4cb",
-    "name": "REVLib",
-    "description": "REV Robotics REVLib C++/Java",
-    "website": "https://docs.revrobotics.com/brushless/spark-max/revlib",
-    "path": "2024/REVLib-2024.2.0.json",
-    "version": "2024.2.0"
-  },
-  {
     "uuid": "1b42324f-17c6-4875-8e77-1c312bc8c786",
     "name": "PathplannerLib",
     "description": "PathPlanner is a motion profile generator for FRC robots created by team 3015.",
     "website": "https://pathplanner.dev/home.html",
     "path": "2024/PathplannerLib-2024.2.8.json",
     "version": "2024.2.8"
+  },
+  {
+    "uuid": "ab676553-b602-441f-a38d-f1296eff6537",
+    "name": "CTRE-Phoenix (v5)",
+    "description": "CTR-Electronics Phoenix 5 framework",
+    "website": "https://v5.docs.ctr-electronics.com/en/latest/index.html",
+    "path": "2024/Phoenix5-5.33.0.json",
+    "version": "5.33.0"
+  },
+  {
+    "uuid": "ab676553-b602-441f-a38d-f1296eff6537",
+    "name": "CTRE-Phoenix (v5)",
+    "description": "CTR-Electronics Phoenix 5 framework",
+    "website": "https://v5.docs.ctr-electronics.com/en/latest/index.html",
+    "path": "2024/Phoenix5-5.33.1.json",
+    "version": "5.33.1"
+  },
+  {
+    "uuid": "e995de00-2c64-4df5-8831-c1441420ff19",
+    "name": "CTRE-Phoenix (v6)",
+    "description": "CTR-Electronics Phoenix 6 framework",
+    "website": "https://v6.docs.ctr-electronics.com/en/latest/index.html",
+    "path": "2024/Phoenix6-24.1.0.json",
+    "version": "24.1.0"
   },
   {
     "uuid": "e995de00-2c64-4df5-8831-c1441420ff19",
@@ -48,20 +48,28 @@
     "version": "24.3.0"
   },
   {
-    "uuid": "ab676553-b602-441f-a38d-f1296eff6537",
-    "name": "CTRE-Phoenix (v5)",
-    "description": "CTR-Electronics Phoenix 5 framework",
-    "website": "https://v5.docs.ctr-electronics.com/en/latest/index.html",
-    "path": "2024/Phoenix5-5.33.1.json",
-    "version": "5.33.1"
+    "uuid": "3f48eb8c-50fe-43a6-9cb7-44c86353c4cb",
+    "name": "REVLib",
+    "description": "REV Robotics REVLib C++/Java",
+    "website": "https://docs.revrobotics.com/brushless/spark-max/revlib",
+    "path": "2024/REVLib-2024.2.0.json",
+    "version": "2024.2.0"
   },
   {
-    "uuid": "ab676553-b602-441f-a38d-f1296eff6537",
-    "name": "CTRE-Phoenix (v5)",
-    "description": "CTR-Electronics Phoenix 5 framework",
-    "website": "https://v5.docs.ctr-electronics.com/en/latest/index.html",
-    "path": "2024/Phoenix5-5.33.0.json",
-    "version": "5.33.0"
+    "uuid": "3f48eb8c-50fe-43a6-9cb7-44c86353c4cb",
+    "name": "REVLib",
+    "description": "REV Robotics REVLib C++/Java",
+    "website": "https://docs.revrobotics.com/brushless/spark-max/revlib",
+    "path": "2024/REVLib-2024.2.1.json",
+    "version": "2024.2.1"
+  },
+  {
+    "uuid": "3f48eb8c-50fe-43a6-9cb7-44c86353c4cb",
+    "name": "REVLib",
+    "description": "REV Robotics REVLib C++/Java",
+    "website": "https://docs.revrobotics.com/brushless/spark-max/revlib",
+    "path": "2024/REVLib-2024.2.2.json",
+    "version": "2024.2.2"
   },
   {
     "uuid": "3f48eb8c-50fe-43a6-9cb7-44c86353c4cb",
@@ -72,14 +80,6 @@
     "version": "2024.2.3"
   },
   {
-    "uuid": "e995de00-2c64-4df5-8831-c1441420ff19",
-    "name": "CTRE-Phoenix (v6)",
-    "description": "CTR-Electronics Phoenix 6 framework",
-    "website": "https://v6.docs.ctr-electronics.com/en/latest/index.html",
-    "path": "2024/Phoenix6-24.1.0.json",
-    "version": "24.1.0"
-  },
-  {
     "uuid": "3f48eb8c-50fe-43a6-9cb7-44c86353c4cb",
     "name": "REVLib",
     "description": "REV Robotics REVLib C++/Java",
@@ -88,11 +88,11 @@
     "version": "2024.2.4"
   },
   {
-    "uuid": "3f48eb8c-50fe-43a6-9cb7-44c86353c4cb",
-    "name": "REVLib",
-    "description": "REV Robotics REVLib C++/Java",
-    "website": "https://docs.revrobotics.com/brushless/spark-max/revlib",
-    "path": "2024/REVLib-2024.2.2.json",
-    "version": "2024.2.2"
+    "uuid": "515fe07e-bfc6-11fa-b3de-0242ac130004",
+    "name": "PhotonLib",
+    "description": "PhotonVision is the free, fast, and easy-to-use vision processing solution for the FIRST Robotics Competition.",
+    "website": "https://docs.photonvision.org/en/latest/docs/programming/photonlib/adding-vendordep.html",
+    "path": "2024/photonlib-v2024.3.1.json",
+    "version": "v2024.3.1"
   }
 ]

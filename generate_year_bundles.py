@@ -63,7 +63,7 @@ def generate_bundle(year: str, root: Path, outdir: Path):
     outdir.mkdir(parents=True, exist_ok=True)
 
     manifest_file = Path(outdir) / f"{year}.json"
-    vendordeps = [file for file in json_dir.glob("*.json")]
+    vendordeps = [file for file in sorted(json_dir.glob("*.json"))]
 
     generate_manifest_file(vendordeps, metadata, path_prefix, manifest_file)
 

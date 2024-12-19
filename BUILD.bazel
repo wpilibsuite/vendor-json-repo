@@ -61,6 +61,11 @@ year_bundle_test(
 )
 
 # TODO temporarily generate bundles files in-tree, to maintain compatability with released beta VS Code plugins
+YEAR_BUNDLES = [
+    "2024",
+    "2025beta",
+]
+
 [genrule(
     name = "generate_" + year + "_year_bundle_rule",
     srcs = glob([year + "/*.json"]) + [
@@ -70,10 +75,7 @@ year_bundle_test(
     outs = ["bundles/" + year + ".json"],
     cmd = "$(locations :generate_year_bundles) -o $(OUTS) " + year,
     tools = [":generate_year_bundles"],
-) for year in [
-    "2024",
-    "2025beta",
-]]
+) for year in YEAR_BUNDLES]
 
 [write_source_files(
     name = "write_" + year + "_year_bundle",
@@ -82,7 +84,9 @@ year_bundle_test(
     },
     suggested_update_target = "//:write_all",
     visibility = ["//visibility:public"],
-) for year in [
-    "2024",
-    "2025beta",
-]]
+) for year in YEAR_BUNDLES]
+
+write_source_files(
+    name = "write_all",
+    additional_update_targets = ["write_" + year + "_year_bundle" for year in YEAR_BUNDLES],
+)
