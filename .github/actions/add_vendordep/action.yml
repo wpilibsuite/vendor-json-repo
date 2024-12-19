@@ -1,0 +1,57 @@
+name: 'Add Vendordep'
+description: 'Adds a vendordep to the repository and creates a pull request the upstream repo'
+
+inputs:
+  token:
+    description: 'Build Buddy API token'
+    required: true
+  vendordep_file:
+    description: 'Path to the vendordep file to upload'
+    required: true
+  pr_title:
+    description: 'The contents used as the PR title when opening the pull request'
+    required: true
+  pr_branch:
+    description: 'The name of the branch to use when creating the pull request'
+    required: true
+  is_beta:
+    description: "If true, this will be added to the years beta files"
+    default: false
+    required: false
+    
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v4
+      with:
+        repository: 'pjreiniger/vendor-json-repo' # TODO
+        fetch-depth: 0  # Fetch all history so we can use git diff
+        path: "vendor-json-repo"
+        ref: "add_vendordep_action" # TODO
+
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Add vendordep
+      shell: bash
+      run: python add_vendordep.py --vendordep_file=$VENDORDEP_FILE --is_beta=$IS_BETA
+      working-directory: vendor-json-repo
+      env:
+        VENDORDEP_FILE: ${{ inputs.vendordep_file }}
+        IS_BETA: ${{ inputs.is_beta }}
+
+    - name: Debug
+      shell: bash
+      run: git --no-pager diff
+      working-directory: vendor-json-repo
+
+    - name: Create Gentool Pull Request
+      uses: peter-evans/create-pull-request@v6
+      with:
+        path: vendor-json-repo
+        base: main
+        branch: ${{ inputs.pr_branch }} 
+        token: ${{ inputs.token }}
+        title:  ${{ inputs.pr_title }}
