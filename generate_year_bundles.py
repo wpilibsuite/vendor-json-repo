@@ -93,6 +93,10 @@ def main():
     )
     args = parser.parse_args()
 
+    # Helper for running with bazel
+    if not args.output.is_dir():
+        args.output = args.output.parent
+
     for year in args.year:
         generate_bundle(year, args.root, args.output)
 

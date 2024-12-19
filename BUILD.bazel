@@ -1,3 +1,4 @@
+load("@aspect_bazel_lib//lib:write_source_files.bzl", "write_source_files")
 load("@rules_python//python:defs.bzl", "py_binary")
 load("@rules_python//python:pip.bzl", "compile_pip_requirements")
 load("@vendor-json-repo-pip//:requirements.bzl", "requirement")
@@ -27,10 +28,16 @@ py_binary(
     visibility = ["//visibility:public"],
 )
 
+py_binary(
+    name = "generate_year_bundles",
+    srcs = ["generate_year_bundles.py"],
+)
+
 # Change this for local testing only.
 cache_directory = None
 
 YEAR_2024_FILES = glob(["2024/*.json"])
+
 [vendordep_check_test(
     allowable_errors = 1,
     allowable_warnings = None,
@@ -40,10 +47,42 @@ YEAR_2024_FILES = glob(["2024/*.json"])
 # year_bundle_test(year="2024", year_files=YEAR_2024_FILES) # Disable the test because there a several invalid entries
 
 YEAR_2025BETA_FILES = glob(["2025beta/*.json"])
+
 [vendordep_check_test(
     allowable_errors = 0,
     allowable_warnings = None,
     cache_directory = cache_directory,
     vendor_file = f,
 ) for f in YEAR_2025BETA_FILES]
-year_bundle_test(year="2025beta", year_files=YEAR_2025BETA_FILES)
+
+year_bundle_test(
+    year = "2025beta",
+    year_files = YEAR_2025BETA_FILES,
+)
+
+# TODO temporarily generate bundles files in-tree, to maintain compatability with released beta VS Code plugins
+[genrule(
+    name = "generate_" + year + "_year_bundle_rule",
+    srcs = glob([year + "/*.json"]) + [
+        year + ".json",
+        year + "_metadata.json",
+    ],
+    outs = ["bundles/" + year + ".json"],
+    cmd = "$(locations :generate_year_bundles) -o $(OUTS) " + year,
+    tools = [":generate_year_bundles"],
+) for year in [
+    "2024",
+    "2025beta",
+]]
+
+[write_source_files(
+    name = "write_" + year + "_year_bundle",
+    files = {
+        year + ".json": ":generate_" + year + "_year_bundle_rule",
+    },
+    suggested_update_target = "//:write_all",
+    visibility = ["//visibility:public"],
+) for year in [
+    "2024",
+    "2025beta",
+]]
