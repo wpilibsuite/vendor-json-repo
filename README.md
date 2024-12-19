@@ -94,3 +94,28 @@ To create a new bundle and add it to the CI job to be checked, generated, and pu
 * In `.github/workflows/generate_bundles.yml`, add the new bundle name to the arguments for `generate_bundles.py`
 * In `.github/workflows/main.yml`, change the `YEAR` environment variable to the name of the new bundle (note: only one bundle is checked by this workflow currently)
 * Add a new test configuration to `BUILD.bazel`
+
+## Automatically creating pull requests
+If your libraries CI creates a new vendordep.json file, you can use an action contained in this repository to automatically create a pull request to add your changes.
+
+Here is an example workflow:
+
+```
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: A job to say hello
+    steps:
+      - uses: actions/checkout@v4
+
+      # Steps to package your vendordep file. It is recommended that you store the new version number in a variable so that it can be used later when creating your PR's title and branch name
+
+      - id: create_pull_request
+        uses: wpilibsuite/vendor-json-repo/.github/actions/add_vendordep@latest
+        with:
+          token: ${{ secrets.PUBLISH_VENDOR_JSON_TOKEN }}
+          vendordep_file: <path to vendordep file>
+          pr_title: "Automatically add <library name> version <version>"
+          pr_branch: "publish_<library name>_<version>"
+          is_beta: true
+```
