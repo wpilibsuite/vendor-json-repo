@@ -45,7 +45,7 @@ Pyunit tests are automatically auto generated run using the checker tool against
 To run the tests, simply run `bazel test //...`. Alternatively, you can run the `checker.py` tool in a standalone mode by running `bazel run //:checker -- <command line arguments from above>`
 
 ## Automatically creating pull requests
-If your libraries CI creates a new vendordep.json file, you can use an action contained in this repository to automatically create a pull request to add your changes.
+If your libraries CI creates a new vendordep.json file, you can use an action contained in this repository to automatically create a pull request to add your changes. In order for the action to work, you must define a secret with write access to be able to create the pull request.
 
 Here is an example workflow:
 
