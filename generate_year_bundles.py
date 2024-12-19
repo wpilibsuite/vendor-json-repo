@@ -1,3 +1,4 @@
+import os
 import argparse
 import json
 import shutil
@@ -63,7 +64,7 @@ def generate_bundle(year: str, root: Path, outdir: Path):
     outdir.mkdir(parents=True, exist_ok=True)
 
     manifest_file = Path(outdir) / f"{year}.json"
-    vendordeps = [file for file in json_dir.glob("*.json")]
+    vendordeps = [file for file in sorted(json_dir.glob("*.json"))]
 
     generate_manifest_file(vendordeps, metadata, path_prefix, manifest_file)
 
@@ -92,6 +93,10 @@ def main():
         "year", nargs="+", type=str, help="Years to generate bundles for"
     )
     args = parser.parse_args()
+
+    # Helper for running with bazel
+    if "RUNFILES_DIR" in os.environ:
+        args.output = args.output.parent
 
     for year in args.year:
         generate_bundle(year, args.root, args.output)

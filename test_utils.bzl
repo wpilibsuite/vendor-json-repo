@@ -91,7 +91,7 @@ class VendordepCheck(unittest.TestCase):
 if __name__ == "__main__":
     unittest.main() # run all tests
 
-""".format(year=year)
+""".format(year = year)
 
     native.genrule(
         name = gen_name,
