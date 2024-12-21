@@ -4,6 +4,11 @@ on:
   push:
   pull_request:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  # On main, deploy one at a time and do not interrupt
+  cancel-in-progress: ${{ !(github.repository == 'wpilibsuite/vendor-json-repo' && github.ref == 'refs/heads/main')}}
+
 jobs:
   generate:
     runs-on: ubuntu-latest
@@ -12,7 +17,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python generate_year_bundles.py -o bundles 2024 2025beta
+      - run: python generate_bundles.py -o bundles 2024 2025beta
       - uses: actions/upload-artifact@v4
         with:
           name: bundles
