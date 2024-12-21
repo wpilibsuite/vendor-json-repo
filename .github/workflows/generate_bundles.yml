@@ -4,6 +4,11 @@ on:
   push:
   pull_request:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  # On main, deploy one at a time and do not interrupt
+  cancel-in-progress: ${{ !(github.repository == 'wpilibsuite/vendor-json-repo' && github.ref == 'refs/heads/main')}}
+
 jobs:
   generate:
     runs-on: ubuntu-latest
