@@ -4,7 +4,7 @@ The GradleRIO build system supports the addition of vendor libraries through JSO
 
 This repository serves as a central repository for vendor libraries that are likely to be used by a large number of FRC teams.  Additions to this repository are accepted on a case-by-case basis with guidance from FIRST.
 
-The automation in this repository (in particular, [.github/workflows/generate_bundles.yml](.github/workflows/generate_bundles.yml)) generates a repository format suitable for consumption by the WPILib VSCode plugin (See #bundle-repository-structure). This is published to a [repository on the WPILib Artifactory server](https://frcmaven.wpi.edu/ui/native/vendordeps/vendordep-marketplace/)
+The automation in this repository (in particular, [.github/workflows/generate_bundles.yml](.github/workflows/generate_bundles.yml)) generates a repository format suitable for consumption by the WPILib VSCode plugin (See #bundle-repository-structure). This is published to a [repository on the WPILib Artifactory server](https://frcmaven.wpi.edu/ui/native/vendordeps/vendordep-marketplace/).
 
 ## Quick Start
 
@@ -16,7 +16,7 @@ In both cases, the vendordep JSON file should be named `NAME-VERSION.json` (see 
 
 ## Repository structure
 
-This git repository contains sources to generate one or more "bundles" of vendordeps. A bundle is a set of vendordep JSON files and an associated manifest that are designed to be consumed by a specific release series (such as a competition season or alpha/beta period) of tooling such as IDEs. For the generated bundle format, see [here](#bundle-repository-structure)
+This git repository contains sources to generate one or more "bundles" of vendordeps. A bundle is a set of vendordep JSON files and an associated manifest that are designed to be consumed by a specific release series (such as a competition season or alpha/beta period) of tooling such as IDEs. For the generated bundle format, see [here](#bundle-repository-structure).
 
 Each bundle is generated from a directory in the root of this repository (named `YEAR/`) containing vendordep JSON files, and a metadata file (also in the root of this repository, named `YEAR_metadata.json`) that provides metadata needed to generate the bundle manifest.
 
@@ -26,7 +26,7 @@ Vendordep JSON files associated with a bundle are placed inside the bundle's dir
 
 ### Bundle metadata file
 
-Each bundle metadata file (`YEAR_metadata.json`) shall contain a list of metadata entries as dicts. Each library shall be represented by a single metadata entry in a given bundle's metadata file.
+Each bundle metadata file (`YEAR_metadata.json`) shall contain a list of library metadata entries as dicts. Each library shall be represented by a single metadata entry in a given bundle's metadata file.
 
 Each entry shall contain, at minimum, the following keys:
 
