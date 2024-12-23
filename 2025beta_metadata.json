@@ -24,6 +24,12 @@
     "website": "https://docs.ctr-electronics.com/"
   },
   {
+    "uuid": "fbc886a4-2cec-40c0-9835-71086a8cc3df",
+    "name": "CTRE-Phoenix (v5) Replay Compatibility",
+    "description": "Compatibility library for Phoenix 5 when using Phoenix 6 replay.",
+    "website": "https://docs.ctr-electronics.com/"
+  },
+  {
     "uuid": "1b42324f-17c6-4875-8e77-1c312bc8c786",
     "name": "PathplannerLib",
     "description": "PathPlanner's powerful robot-side vendor library",
