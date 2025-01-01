@@ -573,6 +573,9 @@ def check_jni_artifacts(dep, fetcher):
 #
 
 def check_file(filename):
+    if not os.path.exists(filename) :
+        return
+
     with open(filename, 'rt') as f:
         j = json.load(f)
 
