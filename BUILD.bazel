@@ -1,7 +1,7 @@
 load("@rules_python//python:defs.bzl", "py_binary")
 load("@rules_python//python:pip.bzl", "compile_pip_requirements")
 load("@vendor-json-repo-pip//:requirements.bzl", "requirement")
-load("//:test_utils.bzl", "vendordep_check_test", "year_bundle_test")
+load("//:test_utils.bzl", "vendordep_check_test")
 
 # bazel run //:requirements.update
 compile_pip_requirements(
@@ -21,12 +21,6 @@ py_binary(
     ],
 )
 
-py_binary(
-    name = "check_year_bundle",
-    srcs = ["check_year_bundle.py"],
-    visibility = ["//visibility:public"],
-)
-
 # Change this for local testing only.
 cache_directory = None
 
@@ -37,7 +31,6 @@ YEAR_2024_FILES = glob(["2024/*.json"])
     cache_directory = cache_directory,
     vendor_file = f,
 ) for f in YEAR_2024_FILES]
-# year_bundle_test(year="2024", year_files=YEAR_2024_FILES) # Disable the test because there a several invalid entries
 
 YEAR_2025BETA_FILES = glob(["2025beta/*.json"])
 [vendordep_check_test(
@@ -46,4 +39,3 @@ YEAR_2025BETA_FILES = glob(["2025beta/*.json"])
     cache_directory = cache_directory,
     vendor_file = f,
 ) for f in YEAR_2025BETA_FILES]
-year_bundle_test(year="2025beta", year_files=YEAR_2025BETA_FILES)

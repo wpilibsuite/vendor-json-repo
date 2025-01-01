@@ -2,22 +2,42 @@
 
 The GradleRIO build system supports the addition of vendor libraries through JSON files added to the vendordeps/ directory of the project.  While vendor artifacts are published via Maven, the Maven ecosystem alone is insufficient for straightforward handling of multi-platform JNI and C++ libraries.  Each vendor JSON file is a standalone complete description of all Maven dependencies and related configuration required to include the vendor library in either a C++ or Java GradleRIO robot project.
 
-This repository serves as a central repository for vendor libraries that are likely to be used by a large number of FRC teams.  Additions to this repository, in particular its master directory, are accepted on a case-by-case basis with guidance from FIRST.
+This repository serves as a central repository for vendor libraries that are likely to be used by a large number of FRC teams.  Additions to this repository are accepted on a case-by-case basis with guidance from FIRST.
+
+The automation in this repository (in particular, [.github/workflows/generate_bundles.yml](.github/workflows/generate_bundles.yml)) generates a repository format suitable for consumption by the WPILib VSCode plugin (See #bundle-repository-structure). This is published to a [repository on the WPILib Artifactory server](https://frcmaven.wpi.edu/ui/native/vendordeps/vendordep-marketplace/).
+
+## Quick Start
+
+To add a new library, add a metadata entry to the metadata file for a given bundle (`YEAR_metadata.json`, see [here](#bundle-metadata-file) for the required/permitted keys), and add a vendordep JSON file for the library to the `YEAR` directory.
+
+To add a new version of an existing library, simply add the vendordep JSON file for the new version into the `YEAR` directory.
+
+In both cases, the vendordep JSON file should be named `NAME-VERSION.json` (see [Repository Structure](#repository-structure)).
 
 ## Repository structure
 
-Each year (e.g. competition season) has a JSON file at the root level (named `YEAR.json`) and a directory (named `YEAR/`) of vendor JSON files.
+This git repository contains sources to generate one or more "bundles" of vendordeps. A bundle is a set of vendordep JSON files and an associated manifest that are designed to be consumed by a specific release series (such as a competition season or alpha/beta period) of tooling such as IDEs. For the generated bundle format, see [here](#bundle-repository-structure).
 
-### YEAR.json
+Each bundle is generated from a directory in the root of this repository (named `YEAR/`) containing vendordep JSON files, and a metadata file (also in the root of this repository, named `YEAR_metadata.json`) that provides metadata needed to generate the bundle manifest.
 
-The root-level `YEAR.json` files (e.g. `2024.json`) provide the master directory of available vendor libraries.  It's intended to be used by IDEs such as Visual Studio Code to present a user-friendly list of available vendor libraries.
+For bundles targeting a season release series, `YEAR` above shall be replaced with the competition season (e.g. `2024`). For bundles targeting a prerelease series, `YEAR` shall be replaced with `YEARalpha` or `YEARbeta`, where `YEAR` is the competition season the prerelease series is for (e.g. `2025beta`). (Note: this convention matches the WPILib VSCode plugin preferences `projectYear` entry)
 
-This json file consists of a list of dicts with the following keys:
-* path: the path within the repository to the vendor JSON file (e.g. `2024/<vendor>-<version>.json`)
-* name: the same as the name in the vendor JSON file (`<vendor>-<version>.json`)
-* uuid: the same as the uuid in the vendor JSON file
-* description: a user-friendly brief description of the library -- intended to be displayed to users in list format
-* website: URL of the vendor's website (e.g. a site with documentation / tutorials / tools installers)
+Vendordep JSON files associated with a bundle are placed inside the bundle's directory. They should be named `NAME-VERSION.json`, where `NAME` is the unique name of the library and `VERSION` is the version of the library that the vendordep JSON represents.
+
+### Bundle metadata file
+
+Each bundle metadata file (`YEAR_metadata.json`) shall contain a list of library metadata entries as dicts. Each library shall be represented by a single metadata entry in a given bundle's metadata file.
+
+Each entry shall contain, at minimum, the following keys:
+
+* `name`: A user-friendly name for the library
+* `uuid`: The uuid for the library (present inside each of the library's vendordep JSON files)
+* `description`: a user-friendly brief description of the library (intended to be displayed to users)
+* `website`: URL of the vendor's website (e.g. a site with documentation / tutorials / tools installers) (note: currently unused by the WPILib VSCode plugin)
+
+Additionally, the entry may contain any of the following optional keys:
+
+* `instructions`: URL of an "instructions" page that can be shown after the user installs this library.
 
 ## JSON checker
 
@@ -43,3 +63,34 @@ Pyunit tests are automatically auto generated run using the checker tool against
 
 ### Running the tests
 To run the tests, simply run `bazel test //...`. Alternatively, you can run the `checker.py` tool in a standalone mode by running `bazel run //:checker -- <command line arguments from above>`
+
+## Bundle repository structure
+
+Each published bundle of vendordeps (typically, a competition season or alpha/beta period) has a JSON file (named `YEAR.json`) at the root level of the published repository and a directory (named `YEAR/`) of vendor JSON files.
+
+### Bundle manifest (YEAR.json)
+
+The root-level `YEAR.json` files (e.g. `2025.json`) provide a manifest of all available libraries and versions for a given bundle. It's intended to be used by IDEs such as Visual Studio Code to present a user-friendly list of available vendor libraries.
+
+This manifest is a JSON file and consists at minimum of a list of dicts (one corresponding to each individual vendordep JSON file in the bundle) with the following keys:
+* `path`: the path relative to the manifest to the vendordep JSON file (e.g. `2025/<vendordep>-<version>.json`)
+* `name`: A user-friendly name for the library
+* `version`: The version of the library
+* `uuid`: the same as the uuid in the vendor JSON file
+* `description`: a user-friendly brief description of the library (intended to be displayed to users)
+* `website`: URL of the vendor's website (e.g. a site with documentation / tutorials / tools installers)
+
+Additionally, the following optional keys may be present in a manifest entry:
+
+* `instructions`: URL of an "instructions" page that can be shown after the user installs this library.
+
+## Maintenance documentation
+
+### Creating new bundles
+
+To create a new bundle and add it to the CI job to be checked, generated, and published:
+
+* Create a directory (`YEAR/`) and metadata file (`YEAR_metadata.json`) for the bundle. They can be empty for now.
+* In `.github/workflows/generate_bundles.yml`, add the new bundle name to the arguments for `generate_bundles.py`
+* In `.github/workflows/main.yml`, change the `YEAR` environment variable to the name of the new bundle (note: only one bundle is checked by this workflow currently)
+* Add a new test configuration to `BUILD.bazel`

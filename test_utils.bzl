@@ -70,37 +70,3 @@ if __name__ == "__main__":
         deps = ["//:check"],
         data = [vendor_file],
     )
-
-def year_bundle_test(year, year_files):
-    gen_name = year + ".gen"
-    test_file_base = year + "_test"
-    test_file_name = test_file_base + ".py"
-
-    test_contents = """
-
-import unittest
-import pathlib
-from check_year_bundle import check_year_bundle
-
-class VendordepCheck(unittest.TestCase):
-    def test_check(self):
-        results = check_year_bundle(pathlib.Path("{year}"))
-        print(results)
-        self.assertTrue(results.is_valid())
-
-if __name__ == "__main__":
-    unittest.main() # run all tests
-
-""".format(year=year)
-
-    native.genrule(
-        name = gen_name,
-        outs = [test_file_name],
-        cmd = "echo '{}' >> $@".format(test_contents),
-    )
-    py_test(
-        name = test_file_base,
-        srcs = [test_file_name],
-        deps = ["//:check_year_bundle"],
-        data = [str(year) + ".json"] + year_files,
-    )
