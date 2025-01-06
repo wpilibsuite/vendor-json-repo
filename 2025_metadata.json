@@ -77,5 +77,11 @@
     "description": "Simulation replay and logging framework",
     "website": "https://docs.advantagekit.org",
     "instructions": "https://docs.advantagekit.org/getting-started/installation/vscode-welcome"
+  },
+  {
+    "uuid": "b5e23f0a-dac9-4ad2-8dd6-02767c520aca",
+    "name": "ChoreoLib",
+    "description": "Library for Choreo trajectory following",
+    "website": "https://github.com/SleipnirGroup/Choreo"
   }
 ]
