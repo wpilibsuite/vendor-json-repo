@@ -83,11 +83,5 @@
     "name": "ChoreoLib",
     "description": "Library for Choreo trajectory following",
     "website": "https://github.com/SleipnirGroup/Choreo"
-  },
-  {
-    "uuid": "1ccce5a4-acd2-4d18-bca3-4b8047188400",
-    "name": "Yet Another Generic Swerve Library (YAGSL)",
-    "description": "Swerve Library using JSON configurations with built-in simulation and physics engine provided by Maple-Sim.",
-    "website": "https://docs.yagsl.com/"
   }
 ]
