@@ -7,7 +7,7 @@
     "mavenUrls": [
         "https://packages.lumynlabs.com/repo"
     ],
-    "jsonUrl": "https://packages.lumynlabs.com/LumynLabs2025.json",
+    "jsonUrl": "https://packages.lumynlabs.com/LumynLabs.json",
     "javaDependencies": [
         {
             "groupId": "com.lumynlabs.frc",
@@ -24,7 +24,6 @@
             "isJar": false,
             "validPlatforms": [
                 "windowsx86-64",
-                "windowsx86",
                 "linuxarm64",
                 "linuxx86-64",
                 "linuxathena",
@@ -38,13 +37,12 @@
             "groupId": "com.lumynlabs.frc",
             "artifactId": "LumynLabs-cpp",
             "version": "2025.0.0",
-            "libName": "LumynLabs",
+            "libName": "Lumyn",
             "headerClassifier": "headers",
             "sharedLibrary": false,
             "skipInvalidPlatforms": true,
             "binaryPlatforms": [
                 "windowsx86-64",
-                "windowsx86",
                 "linuxarm64",
                 "linuxx86-64",
                 "linuxathena",
@@ -56,13 +54,12 @@
             "groupId": "com.lumynlabs.frc",
             "artifactId": "LumynLabs-driver",
             "version": "2025.0.0",
-            "libName": "LumynLabsDriver",
+            "libName": "LumynDriver",
             "headerClassifier": "headers",
             "sharedLibrary": false,
             "skipInvalidPlatforms": true,
             "binaryPlatforms": [
                 "windowsx86-64",
-                "windowsx86",
                 "linuxarm64",
                 "linuxx86-64",
                 "linuxathena",
