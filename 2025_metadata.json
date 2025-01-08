@@ -6,6 +6,13 @@
     "website": "https://github.com/Studica-Robotics/NavX/"
   },
   {
+	  "uuid":"60b2694b-9e6e-4026-81ee-6f167946f4b0",
+	  "name": "ThriftyLib",
+	  "description": "Libraries for ThriftyBot devices",
+	  "website": "https://docs.home.thethriftybot.com/",
+	  "instructions": "https://docs.thethriftybot.com/thrifty-nova/gqCPUYXcVoOZ4KW3DqIr"
+  },
+  {
     "uuid": "e995de00-2c64-4df5-8831-c1441420ff19",
     "name": "CTRE-Phoenix (v6)",
     "description": "Libraries for Phoenix 6 devices",
