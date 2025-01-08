@@ -85,6 +85,12 @@
     "website": "https://github.com/SleipnirGroup/Choreo"
   },
   {
+    "uuid": "eebd34fc-a6d3-48a2-a286-ac1cec59ab89",
+    "name": "LumynLabs",
+    "description": "Vendor library for interfacing with ConnectorX and ConnectorX Animate",
+    "website": "https://docs.lumynlabs.com/"
+  },
+  {
     "uuid": "14b8ad04-24df-11ea-978f-2e728ce88125",
     "name": "PlayingWithFusion",
     "description": "Library for all Playing with Fusion devices including Venom smart motors, time of flight sensors and more",
