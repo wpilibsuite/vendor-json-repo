@@ -83,5 +83,11 @@
     "name": "ChoreoLib",
     "description": "Library for Choreo trajectory following",
     "website": "https://github.com/SleipnirGroup/Choreo"
+  },
+  {
+    "uuid": "14b8ad04-24df-11ea-978f-2e728ce88125",
+    "name": "PlayingWithFusion",
+    "description": "Library for all PlayingWithFusion devices including Venom motor controllers and the Time of Flight sensor.",
+    "website": "https://www.playingwithfusion.com/static/frc.php"
   }
 ]
