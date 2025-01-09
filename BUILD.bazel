@@ -39,3 +39,11 @@ YEAR_2025BETA_FILES = glob(["2025beta/*.json"])
     cache_directory = cache_directory,
     vendor_file = f,
 ) for f in YEAR_2025BETA_FILES]
+
+YEAR_2025_FILES = glob(["2025/*.json"])
+[vendordep_check_test(
+    allowable_errors = 0,
+    allowable_warnings = None,
+    cache_directory = cache_directory,
+    vendor_file = f,
+) for f in YEAR_2025_FILES]
