@@ -67,6 +67,12 @@
     "website": "https://docs.reduxrobotics.com/reduxlib"
   },
   {
+    "uuid": "1ccce5a4-acd2-4d18-bca3-4b8047188400",
+    "name": "Yet Another Generic Swerve Library (YAGSL)",
+    "description": "YAGSL (Yet Another Generic Swerve Library) is an open-source robotics library designed to simplify and optimize the control, simulation, and configuration of swerve drive systems of all types.",
+    "website": "https://docs.yagsl.com/"
+  },
+  {
     "uuid": "c39481e8-4a63-4a4c-9df6-48d91e4da37b",
     "name": "maplesim",
     "description": "FRC Java Robot Simulation using a physics engine",
