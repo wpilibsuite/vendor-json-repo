@@ -6,11 +6,11 @@
     "website": "https://github.com/Studica-Robotics/NavX/"
   },
   {
-	  "uuid":"60b2694b-9e6e-4026-81ee-6f167946f4b0",
-	  "name": "ThriftyLib",
-	  "description": "Libraries for ThriftyBot devices",
-	  "website": "https://docs.home.thethriftybot.com/",
-	  "instructions": "https://docs.thethriftybot.com/thrifty-nova/gqCPUYXcVoOZ4KW3DqIr"
+    "uuid":"60b2694b-9e6e-4026-81ee-6f167946f4b0",
+    "name": "ThriftyLib",
+    "description": "Libraries for ThriftyBot devices",
+    "website": "https://docs.home.thethriftybot.com/",
+    "instructions": "https://docs.thethriftybot.com/thrifty-nova/gqCPUYXcVoOZ4KW3DqIr"
   },
   {
     "uuid": "e995de00-2c64-4df5-8831-c1441420ff19",
@@ -77,12 +77,6 @@
     "name": "maplesim",
     "description": "FRC Java Robot Simulation using a physics engine",
     "website": "https://github.com/Shenzhen-Robotics-Alliance/maple-sim"
-  },
-  {
-    "uuid": "1ccce5a4-acd2-4d18-bca3-4b8047188400",
-    "name": "Yet Another Generic Swerve Library (YAGSL)",
-    "description": "YAGSL (Yet Another Generic Swerve Library) is an open-source robotics library designed to simplify and optimize the control, simulation, and configuration of swerve drive systems of all types.",
-    "website": "https://docs.yagsl.com/"
   },
   {
     "uuid": "d820cc26-74e3-11ec-90d6-0242ac120003",
