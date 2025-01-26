@@ -102,5 +102,11 @@
     "name": "PlayingWithFusion",
     "description": "Library for all Playing with Fusion devices including Venom smart motors, time of flight sensors and more",
     "website": "https://www.playingwithfusion.com/static/frc.php"
+  },
+  {
+    "uuid": "8ef3423d-9532-4665-8339-206dae1d7168",
+    "name": "libgrapplefrc",
+    "description": "Grapple Robotics' library for our smart frc devices",
+    "website": "https://grapplerobotics.au"
   }
 ]
