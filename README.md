@@ -100,7 +100,7 @@ If your libraries CI creates a new vendordep.json file, you can use an action co
 
 Here is an example workflow:
 
-```
+```yml
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
@@ -110,12 +110,12 @@ jobs:
 
       # Steps to package your vendordep file. It is recommended that you store the new version number in a variable so that it can be used later when creating your PR's title and branch name
 
-      - id: create_pull_request
+      - name: Create Vendor JSON Repo PR
         uses: wpilibsuite/vendor-json-repo/.github/actions/add_vendordep@latest
         with:
+          repo: <GH account>/<vendor-json-repo fork name>
           token: ${{ secrets.PUBLISH_VENDOR_JSON_TOKEN }}
           vendordep_file: <path to vendordep file>
           pr_title: "Automatically add <library name> version <version>"
           pr_branch: "publish_<library name>_<version>"
-          is_beta: true
 ```
