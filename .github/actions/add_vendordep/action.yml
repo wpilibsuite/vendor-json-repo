@@ -1,0 +1,53 @@
+name: "Add Vendordep"
+description: "Adds a vendordep to the repository and creates a pull request the upstream repo"
+
+inputs:
+  token:
+    description: "GitHub API token"
+    required: true
+  repo:
+    description: "Name of the repo to create branches on"
+    required: true
+  vendordep_file:
+    description: "Absolute path to the vendordep file to upload"
+    required: true
+  pr_title:
+    description: "The contents used as the PR title when opening the pull request"
+    required: true
+  pr_branch:
+    description: "The name of the branch to use when creating the pull request"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v4
+      with:
+        repository: wpilibsuite/vendor-json-repo
+        fetch-depth: 0 # Fetch all history so we can use git diff
+        path: vendor-json-repo
+        ref: main
+
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: Add vendordep
+      shell: bash
+      run: python add_vendordep.py --vendordep_file=${{ inputs.vendordep_file }}
+      working-directory: vendor-json-repo
+
+    - name: Debug
+      shell: bash
+      run: git --no-pager diff
+      working-directory: vendor-json-repo
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v6
+      with:
+        push-to-fork: ${{ inputs.repo }}
+        path: vendor-json-repo
+        base: main
+        branch: ${{ inputs.pr_branch }}
+        token: ${{ inputs.token }}
+        title: ${{ inputs.pr_title }}
