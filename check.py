@@ -67,7 +67,6 @@ local_maven = None
 year = "2025"
 
 def parse_args(argv):
-    print('Parsing arguments: {0}'.format(argv), file=sys.stderr)
     """Parse command line arguments.  Returns list of filenames."""
     parser = argparse.ArgumentParser(description='Checks a vendor json file')
     parser.add_argument('--verbose', '-v', action='count', help='increase the verbosity of output')
