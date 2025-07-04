@@ -298,6 +298,11 @@ def check_cpp_shared_linux(libf, arch, debug):
                 error('expected soft float')
             if arch == 'raspbian' and (lib['e_flags'] & E_FLAGS.EF_ARM_ABI_FLOAT_HARD) == 0:
                 error('expected hard float')
+            if arch == 'systemcore' and (lib['e_flags'] & E_FLAGS.EF_ARM_ABI_FLOAT_HARD) == 0:
+                error('expected hard float')
+    elif arch == 'systemcore':
+        if lib['e_machine'] != 'EM_AARCH64':
+            error('arch mismatch, expected {0}, got {1}'.format('EM_AARCH64', lib['e_machine']))
 
     # check required libraries (excluding known libraries)
     exclude_libs = set([
@@ -322,6 +327,7 @@ def check_cpp_shared_linux(libf, arch, debug):
         'wpimath',
         'wpinet',
         'wpilibNewCommands',
+        'datalog',
         ])
     if arch == 'athena':
         if year == "2025":
@@ -379,7 +385,9 @@ def check_cpp_shared_windows(libdata, arch, debug):
         'api-ms-win-crt-math-l1-1-0.dll'
         'api-ms-win-crt-string-l1-1-0.dll',
         'api-ms-win-crt-environment-l1-1-0.dll', 
-        'api-ms-win-crt-time-l1-1-0.dll'
+        'api-ms-win-crt-time-l1-1-0.dll',
+        'api-ms-win-crt-math-l1-1-0.dll',
+        'api-ms-win-crt-string-l1-1-0.dll'
         ])
     exclude_libs.update('{0}{1}.dll'.format(l, 'd' if debug else '').lower() for l in [
         'wpilibc',
@@ -603,25 +611,33 @@ def check_file(filename):
     if not j['javaDependencies'] and not j['cppDependencies']:
         error('missing both Java and C++ dependencies')
 
-    # should have linuxathena as at least one of the cppDependencies platforms
+    # should have linuxathena or linuxsystemcore as at least one of the cppDependencies platforms
     if j['cppDependencies']:
         foundathena = False
+        foundsystemcore = False
         for dep in j['cppDependencies']:
             if 'linuxathena' in dep['binaryPlatforms']:
                 foundathena = True
-                break
-        if not foundathena:
+            if 'linuxsystemcore' in dep['binaryPlatforms']:
+                foundsystemcore = True
+        if not foundathena and not year == "2027":
             warn('linuxathena binaryPlatform not found in any "cppDependencies"')
+        if not foundsystemcore and year == "2027":
+            warn('linuxsystemcore binaryPlatform not found in any "cppDependencies"')
 
-    # should have linuxathena as at least one of the jniDependencies platforms
+    # should have linuxathena or linuxsystemcore as at least one of the jniDependencies platforms
     if j['jniDependencies']:
         foundathena = False
+        foundsystemcore = False
         for dep in j['jniDependencies']:
             if 'linuxathena' in dep['validPlatforms']:
                 foundathena = True
-                break
-        if not foundathena:
+            if 'linuxsystemcore' in dep['validPlatforms']:
+                foundsystemcore = True
+        if not foundathena and not year == "2027":
             warn('linuxathena validPlatform not found in any "jniDependencies"')
+        if not foundsystemcore and year == "2027":
+            warn('linuxsystemcore validPlatform not found in any "jniDependencies"')
 
     # Try to fetch the jsonUrl; we just want to make sure it's fetchable and a
     # JSON file, it won't necessarily match this file.
