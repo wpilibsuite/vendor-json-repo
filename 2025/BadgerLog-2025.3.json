@@ -1,0 +1,20 @@
+{
+  "javaDependencies": [
+    {
+      "groupId": "com.github.team1306",
+      "artifactId": "badger-log",
+      "version": "2025.3"
+    }
+  ],
+  "fileName": "badger-log.json",
+  "frcYear": "2025",
+  "jsonUrl": "https://raw.githubusercontent.com/team1306/badger-log/master/vendordep.json",
+  "name": "Badger-Log",
+  "jniDependencies": [],
+  "mavenUrls": [
+    "https://jitpack.io"
+  ],
+  "cppDependencies": [],
+  "version": "2025.3",
+  "uuid": "e5beadf1-8b5a-4317-8b9a-91a77b5390f6"
+}

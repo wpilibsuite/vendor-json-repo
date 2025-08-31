@@ -114,5 +114,11 @@
     "name": "libgrapplefrc",
     "description": "Grapple Robotics' library for our smart frc devices",
     "website": "https://grapplerobotics.au"
+  },
+  { 
+    "uuid": "e5beadf1-8b5a-4317-8b9a-91a77b5390f6", 
+    "name": "BadgerLog", 
+    "description": "Annotation-based NetworkTables utility", 
+    "website": "https://github.com/team1306/badger-log/wiki" 
   }
 ]
