@@ -3,6 +3,24 @@ import json
 import shutil
 from pathlib import Path
 
+def check_languages(vendordep_data: dict) -> list[str]:
+    # Check if json explicitly specifies and use that first
+    if "languages" in vendordep_data:
+        return vendordep_data["languages"]
+
+    languages = []
+    if (
+        "javaDependencies" in vendordep_data
+        and len(vendordep_data["javaDependencies"]) != 0
+    ):
+        languages.append("java")
+    if (
+        "cppDependencies" in vendordep_data
+        and len(vendordep_data["cppDependencies"]) != 0
+    ):
+        languages.append("cpp")
+    return languages
+
 
 def check_metadata_schema(metadata: list[dict]):
     required_keys = {"uuid", "name", "website", "description"}
@@ -38,6 +56,7 @@ def generate_entry(
     return metadata | {
         "path": path_prefix + file.name,
         "version": vendordep_data["version"],
+        "languages": check_languages(vendordep_data),
     }
 
 
