@@ -70,8 +70,7 @@
     "uuid": "a1051e86-a979-4880-a28b-a0d5362d1d96",
     "name": "Yet Another Mechanism System",
     "description": "Mechanism simulation and control framework",
-    "website": "https://yagsl.gitbook.io/yams/",
-    "instructions": "https://yagsl.gitbook.io/yams/documentation"
+    "website": "https://yagsl.gitbook.io/yams/"
   },
   {
     "uuid": "1ccce5a4-acd2-4d18-bca3-4b8047188400",
