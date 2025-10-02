@@ -79,6 +79,13 @@
     "website": "https://docs.yagsl.com/"
   },
   {
+	"uuid": "29aa8c8f-05ae-40aa-96f9-552a5c8a0347",
+    "name": "Yet Another Limelight Library (YALL)",
+    "description": "UNOFFICIAL, not affiliated with Limelight, YALL (Yet Another Limelight Library) is an open-source LimelightLib adaptation with helpful javadocs!",
+    "website": "https://yetanothersoftwaresuite.com/",
+	"instructions": "https://github.com/Yet-Another-Software-Suite/YALL/blob/main/README.md"
+  },
+  {
     "uuid": "c39481e8-4a63-4a4c-9df6-48d91e4da37b",
     "name": "maplesim",
     "description": "FRC Java Robot Simulation using a physics engine",
