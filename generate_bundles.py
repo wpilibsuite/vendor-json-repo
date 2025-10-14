@@ -42,17 +42,23 @@ def generate_entry(
 
 
 def generate_manifest_file(
-    json_files: list[Path], metadata_file: Path, path_prefix: str, outfile: Path
+    json_files: list[Path],
+    metadata_file: Path,
+    path_prefix: str,
+    outfile: Path,
+    pretty=False,
 ):
     """Generates a manifest for all vendordep json files in json_files."""
     metadata_database = load_metadata(metadata_file)
     entries = []
     for file in json_files:
         entries.append(generate_entry(file, path_prefix, metadata_database))
-    outfile.write_text(json.dumps(entries, indent=2), newline="\n")
+
+    format_args = {"indent": 2} if pretty else {"separators": (",", ":")}
+    outfile.write_text(json.dumps(entries, **format_args), newline="\n")
 
 
-def generate_bundle(year: str, root: Path, outdir: Path):
+def generate_bundle(year: str, root: Path, outdir: Path, pretty=False):
     """Generates a 'bundle' consisting of a YEAR.json manifest and a directory named YEAR containing all of the vendordep files
 
     Requires a metadata file YEAR_metadata.json, and a directory named YEAR containing the input vendordeps.
@@ -65,7 +71,7 @@ def generate_bundle(year: str, root: Path, outdir: Path):
     manifest_file = Path(outdir) / f"{year}.json"
     vendordeps = [file for file in json_dir.glob("*.json")]
 
-    generate_manifest_file(vendordeps, metadata, path_prefix, manifest_file)
+    generate_manifest_file(vendordeps, metadata, path_prefix, manifest_file, pretty)
 
     # Copy all vendordeps to outdir/YEAR
     depsdir = outdir / year
@@ -91,10 +97,16 @@ def main():
     parser.add_argument(
         "year", nargs="+", type=str, help="Years to generate bundles for"
     )
-    args = parser.parse_args()
 
+    parser.add_argument(
+        "--pretty",
+        "-p",
+        action="store_true",
+        help="Pretty-print the output. Without this option, output is minified.",
+    )
+    args = parser.parse_args()
     for year in args.year:
-        generate_bundle(year, args.root, args.output)
+        generate_bundle(year, args.root, args.output, args.pretty)
 
 
 if __name__ == "__main__":
