@@ -79,6 +79,7 @@ This manifest is a JSON file and consists at minimum of a list of dicts (one cor
 * `uuid`: the same as the uuid in the vendor JSON file
 * `description`: a user-friendly brief description of the library (intended to be displayed to users)
 * `website`: URL of the vendor's website (e.g. a site with documentation / tutorials / tools installers)
+* `languages`: an array of strings indicating the languages supported by the library. Currently used values are "cpp" and "java".
 
 Additionally, the following optional keys may be present in a manifest entry:
 
