@@ -17,7 +17,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python generate_bundles.py -o bundles 2024 2025beta 2025 2027_alpha1
+      - run: python generate_bundles.py -o bundles 2024 2025beta 2025 2026beta 2027_alpha1
       - uses: actions/upload-artifact@v4
         with:
           name: bundles
