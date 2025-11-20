@@ -64,7 +64,7 @@ def info(s):
 
 verbose = 0
 local_maven = None
-year = "2025"
+year = "2026beta"
 
 def parse_args(argv):
     """Parse command line arguments.  Returns list of filenames."""
@@ -79,7 +79,7 @@ def parse_args(argv):
     global verbose, local_maven, year, cache_directory
     verbose = args.verbose or 0
     local_maven = args.local_maven
-    year = args.year or "2025"
+    year = args.year or year
     cache_directory = args.cache_directory
 
     return args.file
@@ -340,6 +340,17 @@ def check_cpp_shared_linux(libf, arch, debug):
                 'libRoboRIO_FRC_ChipObject.so.25',
                 'libvisa.so',
                 'libFRC_NetworkCommunication.so.25',
+                ])
+        elif year == "2026" or year == "2026beta":
+            exclude_libs.update([
+                'libNiFpga.so.13',
+                'libNiFpgaLv.so.13',
+                'libniriodevenum.so.1',
+                'libniriosession.so.1',
+                'libNiRioSrv.so.13',
+                'libRoboRIO_FRC_ChipObject.so.26',
+                'libvisa.so',
+                'libFRC_NetworkCommunication.so.26',
                 ])
     dep_libs = []
     for section in lib.iter_sections():
