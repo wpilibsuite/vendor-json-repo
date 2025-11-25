@@ -51,3 +51,4 @@ runs:
         branch: ${{ inputs.pr_branch }}
         token: ${{ inputs.token }}
         title: ${{ inputs.pr_title }}
+        commit-message: ${{ inputs.pr_title }}
