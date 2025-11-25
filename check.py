@@ -161,7 +161,7 @@ json_schema = {
             'version': '',
             'libName': '',
             'configuration': Optional(''),
-            'headerClassifier': '',
+            'headerClassifier': Optional(''),
             'sourcesClassifier': Optional(''),
             'binaryPlatforms': Optional(['']),
             'skipInvalidPlatforms': Optional(False),
