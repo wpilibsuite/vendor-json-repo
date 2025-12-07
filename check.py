@@ -6,10 +6,12 @@ import http
 import io
 import json
 import os
+import re
 import sys
 import urllib.request
 import uuid
 import pathlib
+import xml.etree.ElementTree as ET
 from zipfile import ZipFile, BadZipFile
 
 try:
@@ -192,6 +194,81 @@ def check_schema(j, schema, key):
             error('"{0}" cannot be empty string'.format(key_str(key)))
 
 #
+# Version resolution helpers
+#
+
+def parse_version(version_str):
+    """Parse a version string into comparable components."""
+    parts = []
+    for part in re.split(r'[-.]', version_str):
+        try:
+            parts.append((0, int(part)))
+        except ValueError:
+            parts.append((1, part))
+    return parts
+
+def version_matches_pattern(version, pattern):
+    """Check if a version matches a pattern like '2026.+' or '2026.1.+'"""
+    if '+' not in pattern:
+        return version == pattern
+    
+    prefix = pattern.rstrip('+').rstrip('.')
+    return version.startswith(prefix)
+
+def resolve_dynamic_version(urls, group, artifact, version_pattern):
+    """
+    Resolve a dynamic version pattern (containing '+') to an actual version.
+    Fetches maven-metadata.xml and finds the latest matching version.
+    """
+    if '+' not in version_pattern:
+        return version_pattern
+    
+    prefix = version_pattern.rstrip('+').rstrip('.')
+    path = '/'.join(group.split('.')) + '/' + artifact + '/maven-metadata.xml'
+    
+    available_versions = []
+    
+    for baseurl in urls:
+        url = baseurl + ('' if baseurl.endswith('/') else '/') + path
+        if verbose >= 2:
+            print('fetching maven-metadata.xml from "{0}"'.format(url))
+        try:
+            with urlopener.open(url) as f:
+                xml_content = f.read()
+            
+            root = ET.fromstring(xml_content)
+            versioning = root.find('versioning')
+            if versioning is not None:
+                versions = versioning.find('versions')
+                if versions is not None:
+                    for v in versions.findall('version'):
+                        if v.text and version_matches_pattern(v.text, version_pattern):
+                            available_versions.append(v.text)
+            
+            # If we found versions, no need to check other repos
+            if available_versions:
+                break
+                
+        except urllib.error.HTTPError as e:
+            if verbose >= 2:
+                print('could not fetch maven-metadata.xml from "{0}": {1}'.format(url, e))
+        except ET.ParseError as e:
+            if verbose >= 2:
+                print('could not parse maven-metadata.xml from "{0}": {1}'.format(url, e))
+    
+    if not available_versions:
+        warn('could not resolve dynamic version "{0}" for {1}:{2}'.format(version_pattern, group, artifact))
+        return version_pattern
+    
+    available_versions.sort(key=parse_version, reverse=True)
+    resolved = available_versions[0]
+    
+    if verbose >= 1:
+        print('resolved version "{0}" to "{1}" for {2}:{3}'.format(version_pattern, resolved, group, artifact))
+    
+    return resolved
+
+#
 # Maven helpers
 #
 
@@ -200,9 +277,11 @@ class MavenFetcher:
         self.urls = [url + ('' if url.endswith('/') else '/') for url in urls]
         self.group = group
         self.artifact = artifact
-        self.version = version
+        self.original_version = version
+        # Resolve dynamic version if needed
+        self.version = resolve_dynamic_version(urls, group, artifact, version)
         self.ext = ext
-        self.path = '/'.join(group.split('.')) + '/' + artifact + '/' + version + '/'
+        self.path = '/'.join(group.split('.')) + '/' + artifact + '/' + self.version + '/'
 
     def fetch(self, classifier, failok=False):
         fn = self.artifact + '-' + self.version
@@ -241,6 +320,7 @@ class MavenFetcher:
                     if maybe_cached_file:
                         maybe_cached_file.parent.mkdir(parents=True, exist_ok=True)
                         maybe_cached_file.write_bytes(result)
+                    break  # Successfully fetched, stop trying other URLs
                 except urllib.error.HTTPError as e:
                     if not failok:
                         warn('could not fetch url "{0}": {1}'.format(url, e))
@@ -491,15 +571,26 @@ def check_cpp_binary(zf, libName, platform, build):
     else:
         libType = 'shared'
 
-    # library must be in /os/arch/libType/
     expectpath = [os, arch, libType, libName]
     libpaths = [fn for fn in zf.namelist() if fn.split('/') == expectpath]
+    actual_lib_path = None
     if not libpaths:
-        error('library {0} not found'.format('/'.join(expectpath)))
-    elif libType == 'shared':
-        lib = zf.read(libpaths[0])
+        ext = get_lib_ext(os, build)
+        all_libs = [fn for fn in zf.namelist() if fn.endswith(ext)]
+        if all_libs:
+            info('library not at expected path {0}, but found {1} library file(s) in zip'.format(
+                '/'.join(expectpath), len(all_libs)))
+            actual_lib_path = all_libs[0]
+        else:
+            error('library {0} not found (and no {1} files in zip)'.format('/'.join(expectpath), ext))
+    else:
+        actual_lib_path = libpaths[0]
+    
+    if actual_lib_path and libType == 'shared':
+        lib = zf.read(actual_lib_path)
         is_debug = build.endswith('debug')
-        message_context.append(libName)
+        actual_libname = actual_lib_path.split('/')[-1]
+        message_context.append(actual_libname)
         if os == 'linux':
             check_cpp_shared_linux(io.BytesIO(lib), arch, is_debug)
         elif os == 'windows':
@@ -701,3 +792,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
