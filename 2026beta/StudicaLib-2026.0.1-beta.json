@@ -7,7 +7,7 @@
     "mavenUrls": [
         "https://dev.studica.com/maven/release/2026/"
     ],
-    "jsonUrl": "https://dev.studica.com/release/2026/json/StudicaLib-2026.0.1-beta.json",
+    "jsonUrl": "https://dev.studica.com/maven/release/2026/json/StudicaLib-2026.0.1-beta.json",
     "javaDependencies": [
         {
             "groupId": "com.studica.frc",
