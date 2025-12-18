@@ -2,7 +2,13 @@
   {
     "uuid": "cb311d09-36e9-4143-a032-55bb2b94443b",
     "name": "Studica",
-    "description": "Libraries for NavX and other Studica Products",
+    "description": "Libraries for NavX MXP and Micro",
+    "website": "https://github.com/Studica-Robotics/NavX/"
+  },
+  {
+    "uuid": "963ef341-8abd-4981-a969-c8ae3f592e82",
+    "name": "StudicaLib",
+    "description": "Libraries for NavX3 and other Studica Products",
     "website": "https://github.com/Studica-Robotics/NavX/"
   },
   {
