@@ -7,7 +7,7 @@
     "mavenUrls": [
         "https://docs.home.thethriftybot.com"
     ],
-    "jsonUrl": "https://docs.home.thethriftybot.com/ThriftyLib.json",
+    "jsonUrl": "https://docs.home.thethriftybot.com/ThriftyLib-2026.0.0-beta-1.json",
     "javaDependencies": [
         {
             "groupId": "com.thethriftybot.frc",
