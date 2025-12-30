@@ -131,6 +131,20 @@
         },
         {
             "groupId": "com.ctre.phoenix6.sim",
+            "artifactId": "simPigeonIMU",
+            "version": "26.0.0-beta-1",
+            "isJar": false,
+            "skipInvalidPlatforms": true,
+            "validPlatforms": [
+                "windowsx86-64",
+                "linuxx86-64",
+                "linuxarm64",
+                "osxuniversal"
+            ],
+            "simMode": "swsim"
+        },
+        {
+            "groupId": "com.ctre.phoenix6.sim",
             "artifactId": "simProTalonFX",
             "version": "26.0.0-beta-1",
             "isJar": false,
