@@ -54,7 +54,7 @@ jobs:
             if [ -f "$file" ]; then
               if [ -s "$file" ]; then
                 echo "Processing $file with year ${file:0:4}"
-                ./check.py -y "${file:0:4}" "$file"
+                ./check.py "$file"
               else
                 echo "Warning: $file is empty."
               fi
@@ -64,5 +64,5 @@ jobs:
           done < changed_json_files.txt
         else
           echo "No JSON files changed in subdirectories, checking year: $YEAR"
-          ./check.py -y $YEAR $YEAR/*.json
+          ./check.py $YEAR/*.json
         fi
