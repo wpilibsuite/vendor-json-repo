@@ -159,6 +159,20 @@
         },
         {
             "groupId": "com.ctre.phoenix6.sim",
+            "artifactId": "simProTalonFXS",
+            "version": "26.0.0-beta-1",
+            "isJar": false,
+            "skipInvalidPlatforms": true,
+            "validPlatforms": [
+                "windowsx86-64",
+                "linuxx86-64",
+                "linuxarm64",
+                "osxuniversal"
+            ],
+            "simMode": "swsim"
+        },
+        {
+            "groupId": "com.ctre.phoenix6.sim",
             "artifactId": "simProCANcoder",
             "version": "26.0.0-beta-1",
             "isJar": false,
@@ -372,6 +386,22 @@
             "artifactId": "simProTalonFX",
             "version": "26.0.0-beta-1",
             "libName": "CTRE_SimProTalonFX",
+            "headerClassifier": "headers",
+            "sharedLibrary": true,
+            "skipInvalidPlatforms": true,
+            "binaryPlatforms": [
+                "windowsx86-64",
+                "linuxx86-64",
+                "linuxarm64",
+                "osxuniversal"
+            ],
+            "simMode": "swsim"
+        },
+        {
+            "groupId": "com.ctre.phoenix6.sim",
+            "artifactId": "simProTalonFXS",
+            "version": "26.0.0-beta-1",
+            "libName": "CTRE_SimProTalonFXS",
             "headerClassifier": "headers",
             "sharedLibrary": true,
             "skipInvalidPlatforms": true,
