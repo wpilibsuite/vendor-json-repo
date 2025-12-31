@@ -2,7 +2,7 @@ load("@rules_python//python:defs.bzl", "py_test")
 
 def vendordep_check_test(vendor_file, allowable_warnings = 0, allowable_errors = 0, verbosity_level = "-v", cache_directory = None):
     file_no_extension = vendor_file[:-5]
-    year = vendor_file[:4]
+
     gen_name = file_no_extension + ".gen"
     test_file_base = file_no_extension + "_test"
     test_file_name = test_file_base + ".py"
@@ -25,9 +25,8 @@ class VendordepCheck(unittest.TestCase):
         vendor_file = "{vendor_file}"
         warnings_allowed = {allowable_warnings}
         errors_allowed = {allowable_errors}
-        year = {year}
 
-        args = ["-y", "{year}", vendor_file]
+        args = [vendor_file]
 
         {verbosity_replacement}
         {cache_replacement}
@@ -59,7 +58,6 @@ if __name__ == "__main__":
         allowable_errors = allowable_errors,
         cache_replacement = cache_replacement,
         verbosity_replacement = verbosity_replacement,
-        year = year,
     )
 
     native.genrule(
