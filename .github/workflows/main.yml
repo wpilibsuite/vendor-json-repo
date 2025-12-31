@@ -53,7 +53,7 @@ jobs:
           while read -r file; do
             if [ -f "$file" ]; then
               if [ -s "$file" ]; then
-                echo "Processing $file with year ${file:0:4}"
+                echo "Processing $file"
                 ./check.py "$file"
               else
                 echo "Warning: $file is empty."
