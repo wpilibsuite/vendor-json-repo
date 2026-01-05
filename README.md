@@ -112,7 +112,7 @@ jobs:
       # Steps to package your vendordep file. It is recommended that you store the new version number in a variable so that it can be used later when creating your PR's title and branch name
 
       - name: Create Vendor JSON Repo PR
-        uses: wpilibsuite/vendor-json-repo/.github/actions/add_vendordep@latest
+        uses: wpilibsuite/vendor-json-repo/.github/actions/add_vendordep@main
         with:
           repo: <GH account>/<vendor-json-repo fork name>
           token: ${{ secrets.PUBLISH_VENDOR_JSON_TOKEN }}
