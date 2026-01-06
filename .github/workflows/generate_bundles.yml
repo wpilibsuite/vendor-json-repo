@@ -13,12 +13,12 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
       - run: python generate_bundles.py -o bundles 2024 2025beta 2025 2026beta 2026 2027_alpha1
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: bundles
           path: bundles
@@ -34,7 +34,7 @@ jobs:
           disable-auto-build-publish: true
         env:
           JF_ENV_1: ${{ secrets.ARTIFACTORY_CLI_SECRET }}
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v7
         with:
           name: bundles
           path: bundles
