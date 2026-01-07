@@ -64,7 +64,7 @@ def info(s):
 
 verbose = 0
 local_maven = None
-year = "2026beta"
+year = "2026"
 
 def parse_args(argv):
     """Parse command line arguments.  Returns list of filenames."""
