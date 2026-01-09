@@ -64,22 +64,19 @@ def info(s):
 
 verbose = 0
 local_maven = None
-year = "2026"
 
 def parse_args(argv):
     """Parse command line arguments.  Returns list of filenames."""
     parser = argparse.ArgumentParser(description='Checks a vendor json file')
     parser.add_argument('--verbose', '-v', action='count', help='increase the verbosity of output')
     parser.add_argument('--local-maven', help='directory to use for artifacts instead of fetching from mavenUrls')
-    parser.add_argument('--year', '-y', help='FRC competition season year (used to set known libraries)')
     parser.add_argument('--cache_directory', type=pathlib.Path, help='Optional. If present will set up a download cache in this directory to prevent re-downloading artifacts. Should be used for debugging purposes only.')
     parser.add_argument('file', nargs='+', help='json file to parse')
     args = parser.parse_args(argv)
 
-    global verbose, local_maven, year, cache_directory
+    global verbose, local_maven, cache_directory
     verbose = args.verbose or 0
     local_maven = args.local_maven
-    year = args.year or year
     cache_directory = args.cache_directory
 
     return args.file
@@ -280,7 +277,7 @@ def check_cpp_headers(zf):
     if not hfiles:
         warn('no C++ headers in headers zip')
 
-def check_cpp_shared_linux(libf, arch, debug):
+def check_cpp_shared_linux(libf, arch, debug, frcYear):
     lib = ELFFile(libf)
 
     # check expected arch (for known arches)
@@ -330,7 +327,7 @@ def check_cpp_shared_linux(libf, arch, debug):
         'datalog',
         ])
     if arch == 'athena':
-        if year == "2025":
+        if frcYear == "2025":
             exclude_libs.update([
                 'libNiFpga.so.13',
                 'libNiFpgaLv.so.13',
@@ -341,7 +338,7 @@ def check_cpp_shared_linux(libf, arch, debug):
                 'libvisa.so',
                 'libFRC_NetworkCommunication.so.25',
                 ])
-        elif year == "2026" or year == "2026beta":
+        elif frcYear == "2026" or frcYear == "2026beta":
             exclude_libs.update([
                 'libNiFpga.so.13',
                 'libNiFpgaLv.so.13',
@@ -473,7 +470,7 @@ def get_full_libname(libName, os, build):
 
     return get_lib_prefix(os) + libName + get_lib_ext(os, build), debugName
 
-def check_cpp_binary(zf, libName, platform, build):
+def check_cpp_binary(zf, libName, platform, build, frcYear):
     os, arch = split_platform(platform)
     if libName is None:
         # glob for it
@@ -501,7 +498,7 @@ def check_cpp_binary(zf, libName, platform, build):
         is_debug = build.endswith('debug')
         message_context.append(libName)
         if os == 'linux':
-            check_cpp_shared_linux(io.BytesIO(lib), arch, is_debug)
+            check_cpp_shared_linux(io.BytesIO(lib), arch, is_debug, frcYear)
         elif os == 'windows':
             check_cpp_shared_windows(lib, arch, is_debug)
         message_context.pop()
@@ -512,7 +509,7 @@ def check_cpp_binary(zf, libName, platform, build):
         if not dbgpaths:
             info('debug symbols file {0} not found'.format('/'.join(expectpath)))
 
-def check_cpp_artifacts(dep, fetcher):
+def check_cpp_artifacts(dep, fetcher, frcYear):
     # sources
     if 'sourcesClassifier' in dep:
         fn, sources = fetcher.fetch(dep['sourcesClassifier'])
@@ -565,12 +562,12 @@ def check_cpp_artifacts(dep, fetcher):
                 try:
                     with ZipFile(io.BytesIO(binary)) as zf:
                         message_context.append(fn)
-                        check_cpp_binary(zf, dep['libName'], platform, build)
+                        check_cpp_binary(zf, dep['libName'], platform, build, frcYear)
                         message_context.pop()
                 except BadZipFile:
                     error('got bad binary zip')
 
-def check_jni_artifacts(dep, fetcher):
+def check_jni_artifacts(dep, fetcher, frcYear):
     for platform in dep.get('validPlatforms', []):
         fn, binary = fetcher.fetch(platform)
         if binary is None:
@@ -582,7 +579,7 @@ def check_jni_artifacts(dep, fetcher):
             try:
                 with ZipFile(io.BytesIO(binary)) as zf:
                     message_context.append(fn)
-                    check_cpp_binary(zf, None, platform, '')
+                    check_cpp_binary(zf, None, platform, '', frcYear)
                     message_context.pop()
             except BadZipFile:
                 error('got bad binary zip')
@@ -609,6 +606,16 @@ def check_file(filename):
     except ValueError:
         error('"uuid" is not a valid UUID')
 
+    frcYear = j['frcYear']
+    frcYearOnly = j['frcYear'][:4]
+    if frcYearOnly.isdigit():
+        if int(frcYearOnly) >= 2026:
+            parent_dir = os.path.basename(os.path.dirname(os.path.abspath(filename)))
+            if parent_dir != frcYear:
+                error('frcYear "{0}" does not match parent directory "{1}"'.format(frcYear, parent_dir))
+    else:
+        error('frcYear "{0}" does not start with a year', frcYear)
+
     # need to have at least one maven location
     if not j['mavenUrls']:
         error('"mavenUrls" cannot be empty')
@@ -631,9 +638,9 @@ def check_file(filename):
                 foundathena = True
             if 'linuxsystemcore' in dep['binaryPlatforms']:
                 foundsystemcore = True
-        if not foundathena and not year == "2027":
+        if not foundathena and not frcYearOnly == "2027":
             warn('linuxathena binaryPlatform not found in any "cppDependencies"')
-        if not foundsystemcore and year == "2027":
+        if not foundsystemcore and frcYearOnly == "2027":
             warn('linuxsystemcore binaryPlatform not found in any "cppDependencies"')
 
     # should have linuxathena or linuxsystemcore as at least one of the jniDependencies platforms
@@ -645,9 +652,9 @@ def check_file(filename):
                 foundathena = True
             if 'linuxsystemcore' in dep['validPlatforms']:
                 foundsystemcore = True
-        if not foundathena and not year == "2027":
+        if not foundathena and not frcYearOnly == "2027":
             warn('linuxathena validPlatform not found in any "jniDependencies"')
-        if not foundsystemcore and year == "2027":
+        if not foundsystemcore and frcYearOnly == "2027":
             warn('linuxsystemcore validPlatform not found in any "jniDependencies"')
 
     # Try to fetch the jsonUrl; we just want to make sure it's fetchable and a
@@ -672,13 +679,13 @@ def check_file(filename):
     for n, dep in enumerate(j['cppDependencies']):
         fetcher = MavenFetcher(j['mavenUrls'], dep['groupId'], dep['artifactId'], dep['version'], 'zip')
         message_context.append('cppDep.{0}'.format(n))
-        check_cpp_artifacts(dep, fetcher)
+        check_cpp_artifacts(dep, fetcher, frcYear)
         message_context.pop()
 
     for n, dep in enumerate(j['jniDependencies']):
         fetcher = MavenFetcher(j['mavenUrls'], dep['groupId'], dep['artifactId'], dep['version'], 'jar' if dep['isJar'] else 'zip')
         message_context.append('jniDep.{0}'.format(n))
-        check_jni_artifacts(dep, fetcher)
+        check_jni_artifacts(dep, fetcher, frcYear)
         message_context.pop()
 
 #
