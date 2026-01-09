@@ -61,6 +61,14 @@ YEAR_2026BETA_FILES = glob(["2026beta/*.json"])
     vendor_file = f,
 ) for f in YEAR_2026BETA_FILES]
 
+YEAR_2026_FILES = glob(["2026/*.json"])
+[vendordep_check_test(
+    allowable_errors = 0,
+    allowable_warnings = None,
+    cache_directory = cache_directory,
+    vendor_file = f,
+) for f in YEAR_2026_FILES]
+
 YEAR_2027ALPHA1_FILES = glob(["2027_alpha1/*.json"])
 [vendordep_check_test(
     allowable_errors = 0,
