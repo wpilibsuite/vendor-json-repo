@@ -14,6 +14,31 @@ To add a new version of an existing library, simply add the vendordep JSON file 
 
 In both cases, the vendordep JSON file should be named `NAME-VERSION.json` (see [Repository Structure](#repository-structure)).
 
+### Automatically creating pull requests
+If your libraries CI creates a new vendordep.json file, you can use an action contained in this repository to automatically create a pull request to add your changes. In order for the action to work, you must define a secret with write access to be able to create the pull request.
+
+Here is an example workflow:
+
+```yml
+jobs:
+  json_repo_pr_example:
+    runs-on: ubuntu-latest
+    name: JSON Repo PR Example
+    steps:
+      - uses: actions/checkout@v4
+
+      # Steps to package your vendordep file. It is recommended that you store the new version number in a variable so that it can be used later when creating your PR's title and branch name
+
+      - name: Create Vendor JSON Repo PR
+        uses: wpilibsuite/vendor-json-repo/.github/actions/add_vendordep@main
+        with:
+          repo: <GH account>/<vendor-json-repo fork name>
+          token: ${{ secrets.PUBLISH_VENDOR_JSON_TOKEN }}
+          vendordep_file: <path to vendordep file>
+          pr_title: "Add <library name> version <version> (automated)"
+          pr_branch: "publish_<library name>_<version>"
+```
+
 ## Repository structure
 
 This git repository contains sources to generate one or more "bundles" of vendordeps. A bundle is a set of vendordep JSON files and an associated manifest that are designed to be consumed by a specific release series (such as a competition season or alpha/beta period) of tooling such as IDEs. For the generated bundle format, see [here](#bundle-repository-structure).
@@ -95,28 +120,3 @@ To create a new bundle and add it to the CI job to be checked, generated, and pu
 * In `.github/workflows/generate_bundles.yml`, add the new bundle name to the arguments for `generate_bundles.py`
 * In `.github/workflows/main.yml`, change the `YEAR` environment variable to the name of the new bundle (note: only one bundle is checked by this workflow currently)
 * Add a new test configuration to `BUILD.bazel`
-
-## Automatically creating pull requests
-If your libraries CI creates a new vendordep.json file, you can use an action contained in this repository to automatically create a pull request to add your changes. In order for the action to work, you must define a secret with write access to be able to create the pull request.
-
-Here is an example workflow:
-
-```yml
-jobs:
-  hello_world_job:
-    runs-on: ubuntu-latest
-    name: A job to say hello
-    steps:
-      - uses: actions/checkout@v4
-
-      # Steps to package your vendordep file. It is recommended that you store the new version number in a variable so that it can be used later when creating your PR's title and branch name
-
-      - name: Create Vendor JSON Repo PR
-        uses: wpilibsuite/vendor-json-repo/.github/actions/add_vendordep@latest
-        with:
-          repo: <GH account>/<vendor-json-repo fork name>
-          token: ${{ secrets.PUBLISH_VENDOR_JSON_TOKEN }}
-          vendordep_file: <path to vendordep file>
-          pr_title: "Automatically add <library name> version <version>"
-          pr_branch: "publish_<library name>_<version>"
-```
