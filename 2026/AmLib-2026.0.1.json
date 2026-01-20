@@ -27,14 +27,9 @@
       "skipInvalidPlatforms": true,
       "binaryPlatforms": [
         "windowsx86-64",
-        "linuxarm64",
-        "linuxx86-64",
         "linuxathena",
-        "linuxarm32",
-        "osxuniversal"
       ]
     }
   ],
-  "onlineDocumentation": "https://www.andymark.com/",
-  "description": "AndyMark vendor library for CAN devices."
+
 }
