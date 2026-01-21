@@ -126,5 +126,12 @@
     "name": "libgrapplefrc",
     "description": "Grapple Robotics' library for our smart frc devices",
     "website": "https://grapplerobotics.au"
+  },
+  
+  {
+    "uuid": "f463c495-f27c-4102-9dde-af4e65a3eb2d",
+    "name": "AndyMark AM Library",
+    "description": "AndyMark Library for AM CAN devices",
+    "website": "https://andymark.com"
   }
 ]
