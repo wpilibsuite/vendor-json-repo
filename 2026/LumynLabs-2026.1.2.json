@@ -1,0 +1,71 @@
+{
+    "fileName": "LumynLabs-2026.1.2.json",
+    "name": "LumynLabs",
+    "version": "2026.1.2",
+    "frcYear": "2026",
+    "uuid": "eebd34fc-a6d3-48a2-a286-ac1cec59ab89",
+    "mavenUrls": [
+        "https://packages.lumynlabs.com/repo"
+    ],
+    "jsonUrl": "https://packages.lumynlabs.com/LumynLabs.json",
+    "javaDependencies": [
+        {
+            "groupId": "com.lumynlabs.frc",
+            "artifactId": "LumynLabs-java",
+            "version": "2026.1.2"
+        }
+    ],
+    "jniDependencies": [
+        {
+            "groupId": "com.lumynlabs.frc",
+            "artifactId": "LumynLabs-driver",
+            "version": "2026.1.2",
+            "skipInvalidPlatforms": true,
+            "isJar": false,
+            "validPlatforms": [
+                "windowsx86-64",
+                "linuxarm64",
+                "linuxx86-64",
+                "linuxathena",
+                "linuxarm32",
+                "osxuniversal"
+            ]
+        }
+    ],
+    "cppDependencies": [
+        {
+            "groupId": "com.lumynlabs.frc",
+            "artifactId": "LumynLabs-cpp",
+            "version": "2026.1.2",
+            "libName": "Lumyn",
+            "headerClassifier": "headers",
+            "sharedLibrary": true,
+            "skipInvalidPlatforms": true,
+            "binaryPlatforms": [
+                "windowsx86-64",
+                "linuxarm64",
+                "linuxx86-64",
+                "linuxathena",
+                "linuxarm32",
+                "osxuniversal"
+            ]
+        },
+        {
+            "groupId": "com.lumynlabs.frc",
+            "artifactId": "LumynLabs-driver",
+            "version": "2026.1.2",
+            "libName": "LumynDriver",
+            "headerClassifier": "headers",
+            "sharedLibrary": true,
+            "skipInvalidPlatforms": true,
+            "binaryPlatforms": [
+                "windowsx86-64",
+                "linuxarm64",
+                "linuxx86-64",
+                "linuxathena",
+                "linuxarm32",
+                "osxuniversal"
+            ]
+        }
+    ]
+}
