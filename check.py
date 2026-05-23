@@ -616,6 +616,8 @@ def check_file(filename):
         error('cannot have both "wpilibYear" and "frcYear" keys')
     if wpilibYear and wpilibYear[:4] <= '2026' or wpilibYear == "2027_alpha1":
         error('wpilibYear "{0}" should have "frcYear" key, but "frcYear" key is missing'.format(wpilibYear))
+    if frcYear and frcYear[:4] > '2026' and frcYear != "2027_alpha1":
+        error('frcYear "{0}" should have "wpilibYear" key, but "wpilibYear" key is missing'.format(frcYear))
     if frcYear and frcYear[:4] <= '2026' or frcYear == "2027_alpha1":
         wpilibYear = frcYear
 
