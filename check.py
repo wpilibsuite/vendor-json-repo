@@ -612,10 +612,10 @@ def check_file(filename):
     frcYear = j.get('frcYear')
     if not wpilibYear and not frcYear:
         error('missing "wpilibYear" key and "frcYear" key')
-        wpilibYearOnly = ''
     if wpilibYear and frcYear:
         error('cannot have both "wpilibYear" and "frcYear" keys')
-        wpilibYearOnly = ''
+    if wpilibYear and wpilibYear[:4] <= '2026' or wpilibYear == "2027_alpha1":
+        error('wpilibYear "{0}" should have "frcYear" key, but "frcYear" key is missing'.format(wpilibYear))
     if frcYear and frcYear[:4] <= '2026' or frcYear == "2027_alpha1":
         wpilibYear = frcYear
 
