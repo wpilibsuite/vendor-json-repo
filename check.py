@@ -123,7 +123,8 @@ json_schema = {
         'fileName': '',
         'name': '',
         'version': '',
-        'frcYear': '',
+        'frcYear': Optional(''),
+        'wpilibYear': Optional(''),
         'uuid': '',
         'mavenUrls': [''],
         'jsonUrl': '',
@@ -593,7 +594,7 @@ def check_file(filename):
         return
 
     with open(filename, 'rt') as f:
-        j = json.load(f)
+        j: dict = json.load(f)
 
     # overall schema check
     check_schema(j, json_schema, ())
@@ -606,15 +607,24 @@ def check_file(filename):
     except ValueError:
         error('"uuid" is not a valid UUID')
 
-    frcYear = j['frcYear']
-    frcYearOnly = j['frcYear'][:4]
-    if frcYearOnly.isdigit():
-        if int(frcYearOnly) >= 2026:
+    if not j.get('frcYear') and not j.get('wpilibYear'):
+        error('Missing vendordep year')
+
+    yearFieldName = 'frcYear' if j.get('frcYear') else 'wpilibYear'
+    wpilibYear = j[yearFieldName]
+    wpilibYearOnly = j[yearFieldName][:4]
+    if wpilibYearOnly.isdigit():
+        if yearFieldName == 'wpilibYear' and int(wpilibYearOnly) < 2027:
+            error('"wpilibYear" can only be used in 2027 and beyond')
+        elif yearFieldName == 'frcYear' and int(wpilibYearOnly) >= 2027 and wpilibYear != '2027_alpha1':
+            error('"frcYear" can only be used in 2026 and prior')
+
+        if int(wpilibYearOnly) >= 2026:
             parent_dir = os.path.basename(os.path.dirname(os.path.abspath(filename)))
-            if parent_dir != frcYear:
-                error('frcYear "{0}" does not match parent directory "{1}"'.format(frcYear, parent_dir))
+            if parent_dir != wpilibYear:
+                error('frcYear "{0}" does not match parent directory "{1}"'.format(wpilibYear, parent_dir))
     else:
-        error('frcYear "{0}" does not start with a year', frcYear)
+        error('frcYear "{0}" does not start with a year', wpilibYear)
 
     # need to have at least one maven location
     if not j['mavenUrls']:
@@ -638,9 +648,9 @@ def check_file(filename):
                 foundathena = True
             if 'linuxsystemcore' in dep['binaryPlatforms']:
                 foundsystemcore = True
-        if not foundathena and not frcYearOnly == "2027":
+        if not foundathena and not wpilibYearOnly == "2027":
             warn('linuxathena binaryPlatform not found in any "cppDependencies"')
-        if not foundsystemcore and frcYearOnly == "2027":
+        if not foundsystemcore and wpilibYearOnly == "2027":
             warn('linuxsystemcore binaryPlatform not found in any "cppDependencies"')
 
     # should have linuxathena or linuxsystemcore as at least one of the jniDependencies platforms
@@ -652,9 +662,9 @@ def check_file(filename):
                 foundathena = True
             if 'linuxsystemcore' in dep['validPlatforms']:
                 foundsystemcore = True
-        if not foundathena and not frcYearOnly == "2027":
+        if not foundathena and not wpilibYearOnly == "2027":
             warn('linuxathena validPlatform not found in any "jniDependencies"')
-        if not foundsystemcore and frcYearOnly == "2027":
+        if not foundsystemcore and wpilibYearOnly == "2027":
             warn('linuxsystemcore validPlatform not found in any "jniDependencies"')
 
     # Try to fetch the jsonUrl; we just want to make sure it's fetchable and a
@@ -679,13 +689,13 @@ def check_file(filename):
     for n, dep in enumerate(j['cppDependencies']):
         fetcher = MavenFetcher(j['mavenUrls'], dep['groupId'], dep['artifactId'], dep['version'], 'zip')
         message_context.append('cppDep.{0}'.format(n))
-        check_cpp_artifacts(dep, fetcher, frcYear)
+        check_cpp_artifacts(dep, fetcher, wpilibYear)
         message_context.pop()
 
     for n, dep in enumerate(j['jniDependencies']):
         fetcher = MavenFetcher(j['mavenUrls'], dep['groupId'], dep['artifactId'], dep['version'], 'jar' if dep['isJar'] else 'zip')
         message_context.append('jniDep.{0}'.format(n))
-        check_jni_artifacts(dep, fetcher, frcYear)
+        check_jni_artifacts(dep, fetcher, wpilibYear)
         message_context.pop()
 
 #
