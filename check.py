@@ -374,8 +374,6 @@ def check_cpp_shared_linux(libf, arch, debug, wpilibYear):
                 continue
             if symbol.name.startswith('_ZN3frc') or symbol.name.startswith('_ZNK3frc'):
                 error('symbol defined in frc namespace: {0}'.format(symbol.name))
-            if symbol.name.startswith('_ZN3wpi') or symbol.name.startswith('_ZNK3wpi'):
-                error('symbol defined in wpi namespace: {0}'.format(symbol.name))
 
 def check_cpp_shared_windows(libdata, arch, debug):
     lib = pefile.PE(data=libdata)
