@@ -6,7 +6,8 @@ import shutil
 
 def add_vendordep(vendordep_filename):
     vendordep_contents = json.loads(vendordep_filename.read_bytes())
-    year = vendordep_contents["wpilibYear"]
+    # Uses dict default value as a fallback, remove after 2026
+    year = vendordep_contents.get("wpilibYear", vendordep_contents["frcYear"])
 
     metadata_filename = Path(f"{year}_metadata.json")
     metadata_contents = json.loads(metadata_filename.read_bytes())
