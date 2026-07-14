@@ -1,0 +1,35 @@
+{
+    "fileName": "ThriftyLib.json",
+    "name": "ThriftyLib",
+    "version": "2027.0.0-alpha-1",
+    "wpilibYear": "2027_alpha5",
+    "uuid": "758d96ed-8818-4e37-985c-e5518ef9a7b1",
+    "mavenUrls": [
+        "https://docs.home.thethriftybot.com"
+    ],
+    "jsonUrl": "https://docs.home.thethriftybot.com/software/thriftylib",
+    "javaDependencies": [
+        {
+            "groupId": "com.thrifty.frc",
+            "artifactId": "ThriftyLib-java",
+            "version": "2027.0.0-alpha-1"
+        }
+    ],
+    "jniDependencies": [
+        {
+            "groupId": "com.thrifty.frc",
+            "artifactId": "ThriftyLib-driver",
+            "version": "2027.0.0-alpha-1",
+            "skipInvalidPlatforms": true,
+            "isJar": false,
+            "validPlatforms": [
+                "windowsx86-64",
+                "linuxarm64",
+                "linuxx86-64",
+                "linuxsystemcore",
+                "osxuniversal"
+            ]
+        }
+    ],
+    "cppDependencies": []
+}
