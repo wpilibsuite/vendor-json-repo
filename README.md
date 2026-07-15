@@ -2,7 +2,7 @@
 
 The GradleRIO build system supports the addition of vendor libraries through JSON files added to the vendordeps/ directory of the project.  While vendor artifacts are published via Maven, the Maven ecosystem alone is insufficient for straightforward handling of multi-platform JNI and C++ libraries.  Each vendor JSON file is a standalone complete description of all Maven dependencies and related configuration required to include the vendor library in either a C++ or Java GradleRIO robot project.
 
-This repository serves as a central repository for vendor libraries that are likely to be used by a large number of FRC teams.  Additions to this repository are accepted on a case-by-case basis with guidance from FIRST.
+This repository serves as a central repository for vendor libraries that are likely to be used by a large number of FIRST teams.  Additions to this repository are accepted on a case-by-case basis with guidance from FIRST.
 
 The automation in this repository (in particular, [.github/workflows/generate_bundles.yml](.github/workflows/generate_bundles.yml)) generates a repository format suitable for consumption by the WPILib VSCode plugin (See #bundle-repository-structure). This is published to a [repository on the WPILib Artifactory server](https://frcmaven.wpi.edu/ui/native/vendordeps/vendordep-marketplace/).
 
