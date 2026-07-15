@@ -1,0 +1,34 @@
+{
+  "fileName": "AmLib-2027.0.2-alpha5.json",
+  "name": "AndyMark AM Library",
+  "version": "2027.0.2-alpha5",
+  "wpilibYear": "2027_alpha5",
+  "uuid": "8ff1e47a-a88b-43fd-ba16-1a41a361aa6a",
+  "mavenUrls": [
+    "https://andymarkproductsoftware.github.io/amlib-vendordep/repo/2027_alpha5/"
+  ],
+  "jsonUrl": "https://andymarkproductsoftware.github.io/amlib-vendordep/vendordeps/2027alpha5/AmLib-2027.0.2-alpha5.json",
+  "jniDependencies": [],
+  "javaDependencies": [
+    {
+      "groupId": "com.andymark.frc",
+      "artifactId": "AmLib-java",
+      "version": "2027.0.2-alpha5"
+    }
+  ],
+  "cppDependencies": [
+    {
+      "groupId": "com.andymark.frc",
+      "artifactId": "AmLib-cpp",
+      "version": "2027.0.2-alpha5",
+      "libName": "AmLib",
+      "headerClassifier": "headers",
+      "sharedLibrary": false,
+      "skipInvalidPlatforms": true,
+      "binaryPlatforms": [
+        "windowsx86-64",
+        "linuxsystemcore"
+      ]
+    }
+  ]
+}
