@@ -31,5 +31,22 @@
             ]
         }
     ],
-    "cppDependencies": []
+    "cppDependencies": [
+        {
+            "groupId": "com.thrifty.frc",
+            "artifactId": "ThriftyLib-cpp",
+            "version": "2027.0.0-alpha-2",
+            "libName": "Thrifty",
+            "headerClassifier": "headers",
+            "sharedLibrary": true,
+            "skipInvalidPlatforms": true,
+            "binaryPlatforms": [
+                "windowsx86-64",
+                "linuxarm64",
+                "linuxx86-64",
+                "linuxsystemcore",
+                "osxuniversal"
+            ]
+        }
+    ]
 }
