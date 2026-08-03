@@ -2,7 +2,7 @@
   "fileName": "ReduxLib-2027.0.0-alpha-6.json",
   "name": "ReduxLib",
   "version": "2027.0.0-alpha-6",
-  "frcYear": "2027_alpha5",
+  "wpilibYear": "2027_alpha5",
   "uuid": "151ecca8-670b-4026-8160-cdd2679ef2bd",
   "mavenUrls": [
     "https://maven.reduxrobotics.com/"
