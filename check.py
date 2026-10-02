@@ -314,6 +314,8 @@ def check_cpp_shared_linux(libf, arch, debug, wpilibYear):
         'libgcc_s.so.1',
         'libpthread.so.0',
         'libc.so.6',
+        'libMrcLib.so',
+        'libsystemd.so.0'
         ])
     exclude_libs.update('lib{0}{1}.so'.format(l, 'd' if debug else '') for l in [
         'wpilibc',
@@ -326,6 +328,11 @@ def check_cpp_shared_linux(libf, arch, debug, wpilibYear):
         'wpinet',
         'wpilibNewCommands',
         'datalog',
+        'drivers',
+        'fields',
+        'telemetry',
+        'tunables',
+        'commandsv2',
         ])
     if arch == 'athena':
         if wpilibYear == "2025":
@@ -408,6 +415,12 @@ def check_cpp_shared_windows(libdata, arch, debug):
         'wpimath',
         'wpinet',
         'wpilibNewCommands',
+        'datalog',
+        'drivers',
+        'fields',
+        'telemetry',
+        'tunables',
+        'commandsv2',
         'MSVCP140',
         'VCRUNTIME140',
         'VCRUNTIME140_1',
