@@ -74,9 +74,15 @@
   },
   {
     "uuid": "a1051e86-a979-4880-a28b-a0d5362d1d96",
-    "name": "Yet Another Mechanism System",
-    "description": "Mechanism simulation and control framework",
-    "website": "https://yagsl.gitbook.io/yams/"
+    "name": "Yet Another Mechanism System (Commands v2)",
+    "description": "Mechanism simulation and control framework for Commands v2",
+    "website": "https://yams.yassrobotics.com/"
+  },
+  {
+    "uuid": "9eadd383-6bdc-4107-957a-b50cd3146f17",
+    "name": "Yet Another Mechanism System (Commands v3)",
+    "description": "Mechanism simulation and control framework for Commands v3",
+    "website": "https://yams.yassrobotics.com/"
   },
   {
     "uuid": "1ccce5a4-acd2-4d18-bca3-4b8047188400",
