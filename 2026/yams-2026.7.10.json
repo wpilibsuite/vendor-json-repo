@@ -15,25 +15,7 @@
       "version": "2026.7.10"
     }
   ],
-  "cppDependencies": [
-    {
-      "groupId": "yams",
-      "artifactId": "YAMS-cpp",
-      "version": "2026.7.10",
-      "libName": "YAMS",
-      "headerClassifier": "headers",
-      "sharedLibrary": true,
-      "skipInvalidPlatforms": true,
-      "binaryPlatforms": [
-        "windowsx86-64",
-        "linuxarm64",
-        "linuxx86-64",
-        "linuxathena",
-        "linuxarm32",
-        "osxuniversal"
-      ]
-    }
-  ],
+  "cppDependencies": [],
   "jniDependencies": [],
   "requires": []
 }
