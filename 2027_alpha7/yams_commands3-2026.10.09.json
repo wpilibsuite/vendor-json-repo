@@ -22,7 +22,13 @@
     ],
     "cppDependencies": [],
     "jniDependencies": [],
-    "requires": [],
+    "requires": [
+        {
+            "uuid": "4decdc05-a056-46cf-9561-39449bbb0130",
+            "errorMessage": "Commands v3 is required! Install it from the WPILib vendor libraries.",
+            "offlineFileName": "CommandsV3.json"
+        }
+    ],
     "conflictsWith": [
         {
             "uuid": "a1051e86-a979-4880-a28b-a0d5362d1d96",

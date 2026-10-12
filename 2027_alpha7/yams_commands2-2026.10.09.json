@@ -39,7 +39,13 @@
         }
     ],
     "jniDependencies": [],
-    "requires": [],
+    "requires": [
+        {
+            "uuid": "111e20f7-815e-48f8-9dd6-e675ce75b266",
+            "errorMessage": "Commands V2 is required! Install it from the WPILib vendor libraries.",
+            "offlineFileName": "CommandsV2.json"
+        }
+    ],
     "conflictsWith": [
         {
             "uuid": "9eadd383-6bdc-4107-957a-b50cd3146f17",

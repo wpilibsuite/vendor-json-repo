@@ -132,7 +132,7 @@ json_schema = {
             'uuid': '',
             'errorMessage': '',
             'offlineFileName': '',
-            'onlineUrl': '',
+            'onlineUrl': Optional(''),
         }]),
         'conflictsWith': Optional([{
             'uuid': '',
