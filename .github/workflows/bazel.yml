@@ -2,11 +2,10 @@
 
 name: Bazel CI
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the main branch
 on:
-  push:
-  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "15 3 * * Sat" # 11:15PM EST every Friday
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
