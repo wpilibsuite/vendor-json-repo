@@ -25,15 +25,5 @@ jobs:
       with:
         fetch-depth: 0  # Fetch all history so we can use git diff
 
-    - name: Maybe setup BuildBuddy key
-      env:
-        API_KEY: ${{ secrets.API_KEY }}
-      if: ${{ env.API_KEY != '' }}
-      shell: bash
-      run: |
-          echo "API Key detected!"
-          echo "build:build_buddy --remote_header=x-buildbuddy-api-key=${{ env.API_KEY }}" > .buildbuddy-auth.rc
-
     - name: Run check
-      run: |
-        bazel test //... -k --config=ci
+      run: bazel test //... -k --config=ci
