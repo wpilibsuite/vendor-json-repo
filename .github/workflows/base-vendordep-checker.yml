@@ -1,6 +1,6 @@
 # This workflow runs the JSON checker on each vendordep JSON file.
 
-name: Bazel CI
+name: Weekly Vendordep Availability Checker
 
 on:
   workflow_dispatch:
