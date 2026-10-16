@@ -1,12 +1,11 @@
 # This workflow runs the JSON checker on each vendordep JSON file.
 
-name: Bazel CI
+name: Weekly Vendordep Availability Checker
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the main branch
 on:
-  push:
-  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "15 3 * * Sat" # 11:15PM EST every Friday
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -16,6 +15,7 @@ concurrency:
 jobs:
   # This workflow contains a single job called "run-json-checker"
   run-json-checker:
+    if: github.repository_owner == 'wpilibsuite'
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -25,15 +25,5 @@ jobs:
       with:
         fetch-depth: 0  # Fetch all history so we can use git diff
 
-    - name: Maybe setup BuildBuddy key
-      env:
-        API_KEY: ${{ secrets.API_KEY }}
-      if: ${{ env.API_KEY != '' }}
-      shell: bash
-      run: |
-          echo "API Key detected!"
-          echo "build:build_buddy --remote_header=x-buildbuddy-api-key=${{ env.API_KEY }}" > .buildbuddy-auth.rc
-
     - name: Run check
-      run: |
-        bazel test //... -k --config=ci
+      run: bazel test //... -k --config=ci

@@ -1,6 +1,4 @@
-# This workflow runs the JSON checker on each vendordep JSON file.
-
-name: CI
+name: PR Vendordep Checker
 
 # Controls when the action will run. Triggers the workflow on push or pull request events
 on:
