@@ -1,0 +1,54 @@
+{
+    "fileName": "ThriftyLib-2026.json",
+    "name": "ThriftyLib",
+    "version": "2026.3.2",
+    "frcYear": "2026",
+    "uuid": "60b2694b-9e6e-4026-81ee-6f167946f4b0",
+    "mavenUrls": [
+        "https://software.thethriftybot.com/maven"
+    ],
+    "jsonUrl": "https://software.thethriftybot.com/frcvendor/ThriftyLib-2026.json",
+    "javaDependencies": [
+        {
+            "groupId": "com.thrifty.frc",
+            "artifactId": "Thrifty-java",
+            "version": "2026.3.2"
+        }
+    ],
+    "jniDependencies": [
+        {
+            "groupId": "com.thrifty.frc",
+            "artifactId": "Thrifty-driver",
+            "version": "2026.3.2",
+            "skipInvalidPlatforms": true,
+            "isJar": false,
+            "validPlatforms": [
+                "windowsx86-64",
+                "linuxx86-64",
+                "osxuniversal",
+                "linuxathena",
+                "linuxarm32",
+                "linuxarm64"
+            ]
+        }
+    ],
+    "cppDependencies": [
+        {
+            "groupId": "com.thrifty.frc",
+            "artifactId": "Thrifty-cpp",
+            "version": "2026.3.2",
+            "libName": "Thrifty",
+            "headerClassifier": "headers",
+            "sharedLibrary": true,
+            "skipInvalidPlatforms": true,
+            "binaryPlatforms": [
+                "windowsx86-64",
+                "linuxx86-64",
+                "osxuniversal",
+                "linuxathena",
+                "linuxarm32",
+                "linuxarm64"
+            ]
+        }
+    ]
+}
