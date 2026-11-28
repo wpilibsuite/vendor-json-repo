@@ -10,6 +10,7 @@ import sys
 import urllib.request
 import uuid
 import pathlib
+import re
 from zipfile import ZipFile, BadZipFile
 
 try:
@@ -125,6 +126,7 @@ json_schema = {
         'version': '',
         'frcYear': Optional(''),
         'wpilibYear': Optional(''),
+        'wpilibVersion': Optional(''),
         'uuid': '',
         'mavenUrls': [''],
         'jsonUrl': '',
@@ -585,6 +587,32 @@ def check_jni_artifacts(dep, fetcher, wpilibYear):
             except BadZipFile:
                 error('got bad binary zip')
 
+def expected_version_key(directory):
+    """Return the version key required for a vendordep in this bundle directory."""
+    if directory in ('2027_alpha5', '2027_alpha7'):
+        return 'wpilibYear'
+    if directory == '2027_alpha1':
+        return 'frcYear'
+    year = directory[:4]
+    if year.isdigit() and int(year) <= 2026:
+        return 'frcYear'
+    return 'wpilibVersion'
+
+def parse_wpilib_version(value):
+    """Parse <year>.<imageBreaking>-<WPILibBreaking>[.<WPILibNonBreaking>].
+
+    The optional nonbreaking value is ignored
+    """
+    if not isinstance(value, str):
+        raise ValueError('expected a string')
+    match = re.fullmatch(r'(\d+)\.(\d+)-(\d+)(?:\.(\d+))?', value)
+    if not match:
+        raise ValueError('expected <year>.<imageBreaking>-<WPILibBreaking>[.<WPILibNonBreaking>]')
+    parts = [int(match.group(n)) for n in (1, 2, 3)]
+    if any(part > 2147483647 for part in parts):
+        raise ValueError('one or more parts are too large')
+    return tuple(parts)
+
 #
 # Top level checks
 #
@@ -607,28 +635,36 @@ def check_file(filename):
     except ValueError:
         error('"uuid" is not a valid UUID')
 
-    # Prefer the newer `wpilibYear` key, but fall back to `frcYear` for older files
-    wpilibYear = j.get('wpilibYear')
-    frcYear = j.get('frcYear')
-    if not wpilibYear and not frcYear:
-        error('missing "wpilibYear" key and "frcYear" key')
-    if wpilibYear and frcYear:
-        error('cannot have both "wpilibYear" and "frcYear" keys')
-    if wpilibYear and wpilibYear[:4] <= '2026' or wpilibYear == "2027_alpha1":
-        error('wpilibYear "{0}" should have "frcYear" key, but "frcYear" key is missing'.format(wpilibYear))
-    if frcYear and frcYear[:4] > '2026' and frcYear != "2027_alpha1":
-        error('frcYear "{0}" should have "wpilibYear" key, but "wpilibYear" key is missing'.format(frcYear))
-    if frcYear and frcYear[:4] <= '2026' or frcYear == "2027_alpha1":
-        wpilibYear = frcYear
-
-    wpilibYearOnly = wpilibYear[:4]
-    if wpilibYearOnly.isdigit():
-        if int(wpilibYearOnly) >= 2026:
-            parent_dir = os.path.basename(os.path.dirname(os.path.abspath(filename)))
-            if parent_dir != wpilibYear:
-                error('wpilibYear "{0}" does not match parent directory "{1}"'.format(wpilibYear, parent_dir))
+    parent_dir = os.path.basename(os.path.dirname(os.path.abspath(filename)))
+    expected_key = expected_version_key(parent_dir)
+    for key in ('frcYear', 'wpilibYear', 'wpilibVersion'):
+        if key in j and key != expected_key:
+            error('"{0}" key is not allowed in directory "{1}"; expected "{2}"'.format(key, parent_dir, expected_key))
+    if expected_key not in j:
+        error('missing "{0}" key'.format(expected_key))
+        wpilibYear = wpilibYearOnly = ''
+    elif expected_key == 'wpilibVersion':
+        value = j[expected_key] or ''
+        try:
+            year, image_breaking, wpilib_breaking = parse_wpilib_version(value)
+        except ValueError as e:
+            error('invalid "wpilibVersion" "{0}": {1}'.format(value, e))
+            wpilibYearOnly = value[:4] if value[:4].isdigit() else ''
+            wpilibYear = wpilibYearOnly
+        else:
+            wpilibYear = str(year)
+            wpilibYearOnly = wpilibYear
+            expected_dir = '{0}.{1}-{2}'.format(year, image_breaking, wpilib_breaking)
+            if parent_dir != expected_dir:
+                error('wpilibVersion "{0}" does not match parent directory "{1}"; expected "{2}"'.format(value, parent_dir, expected_dir))
     else:
-        error('wpilibYear "{0}" does not start with a year'.format(wpilibYear))
+        value = j[expected_key] or ''
+        wpilibYear = value
+        wpilibYearOnly = value[:4]
+        if not wpilibYearOnly.isdigit():
+            error('{0} "{1}" does not start with a year'.format(expected_key, value))
+        elif int(wpilibYearOnly) >= 2026 and parent_dir != value:
+            error('{0} "{1}" does not match parent directory "{2}"'.format(expected_key, value, parent_dir))
 
     # need to have at least one maven location
     if not j['mavenUrls']:
