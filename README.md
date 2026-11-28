@@ -8,11 +8,11 @@ The automation in this repository (in particular, [.github/workflows/generate_bu
 
 ## Quick Start
 
-To add a new library, add a metadata entry to the metadata file for a given bundle (`YEAR_metadata.json`, see [here](#bundle-metadata-file) for the required/permitted keys), and add a vendordep JSON file for the library to the `YEAR` directory.
+To add a new library, add a metadata entry to the metadata file for a given bundle (`WPILIBVERSION_metadata.json`, see [here](#bundle-metadata-file) for the required/permitted keys), and add a vendordep JSON file for the library to the `WPILIBVERSION` directory.
 
-To add a new version of an existing library, simply add the vendordep JSON file for the new version into the `YEAR` directory.
+To add a new version of an existing library, simply add the vendordep JSON file for the new version into the `WPILIBVERSION` directory.
 
-In both cases, the vendordep JSON file should be named `NAME-VERSION.json` (see [Repository Structure](#repository-structure)).
+In both cases, the vendordep JSON file should be named `NAME-VENDORVERSION.json` (see [Repository Structure](#repository-structure)).
 
 ### Automatically creating pull requests
 If your libraries CI creates a new vendordep.json file, you can use an action contained in this repository to automatically create a pull request to add your changes. In order for the action to work, you must define a secret with write access to be able to create the pull request.
@@ -43,11 +43,12 @@ jobs:
 
 This git repository contains sources to generate one or more "bundles" of vendordeps. A bundle is a set of vendordep JSON files and an associated manifest that are designed to be consumed by a specific release series (such as a competition season or alpha/beta period) of tooling such as IDEs. For the generated bundle format, see [here](#bundle-repository-structure).
 
-Each bundle is generated from a directory in the root of this repository (named `YEAR/`) containing vendordep JSON files, and a metadata file (also in the root of this repository, named `YEAR_metadata.json`) that provides metadata needed to generate the bundle manifest.
+Each bundle is generated from a directory in the root of this repository (named `WPILIBVERSION/`) containing vendordep JSON files, and a metadata file (also in the root of this repository, named `WPILIBVERSION_metadata.json`) that provides metadata needed to generate the bundle manifest.
 
-For bundles targeting a season release series, `YEAR` above shall be replaced with the competition season (e.g. `2024`). For bundles targeting a prerelease series, `YEAR` shall be replaced with `YEARalpha` or `YEARbeta`, where `YEAR` is the competition season the prerelease series is for (e.g. `2025beta`). (Note: this convention matches the WPILib VSCode plugin preferences `projectYear` entry)
+For 2027 beta and later, `WPILIBVERSION` above shall be replaced with the version format `<year>.<imageBreaking>-<WPILibBreaking>`. For bundles from 2027 alpha and earlier, the VERSION should match the wpilibYear or frcYear (eg 2026, or 2027_alpha5, or 2026beta).
 
-Vendordep JSON files associated with a bundle are placed inside the bundle's directory. They should be named `NAME-VERSION.json`, where `NAME` is the unique name of the library and `VERSION` is the version of the library that the vendordep JSON represents.
+Vendordep JSON files associated with a bundle are placed inside the bundle's directory. They should be named `NAME-VENDORVERSION.json`, where `NAME` is the unique name of the library and `VENDORVERSION` is the version of the library that the vendordep JSON represents.
+
 
 ### Bundle metadata file
 
@@ -68,7 +69,7 @@ Additionally, the entry may contain any of the following optional keys:
 
 To assist in making sure that vendor JSON files and their associated Maven dependencies are correct, a checker script (check.py) is provided.  This Python 3 script is run automatically on each PR, and can also be run manually on any checkout.  While the checks performed do not include actually trying to build a robot program, they are designed to ensure that the JSON file and Maven dependencies will work within the build ecosystem.
 
-Usage: `check.py [-v] [--local-maven LOCAL_MAVEN] [--year YEAR] file [file ...]`
+Usage: `check.py [-v] [--local-maven LOCAL_MAVEN] [--cache_directory CACHE_DIRECTORY] file [file ...]`
 
 The primary output of check.py consists of ERROR, WARNING, and INFO messages.  ERROR messages must be fixed in order for the JSON file to work within the build ecosystem.  WARNINGs are cautionary: something isn't right, but builds will likely work.  INFO messages are informational.
 
